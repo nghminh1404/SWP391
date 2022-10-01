@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class Dao extends DBContext {
 
-    Connection conn = null;
+    Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
 
@@ -30,8 +30,8 @@ public class Dao extends DBContext {
                 + "where email=?\n"
                 + "and password=?";
         try {
-            conn = new DBContext().connection;
-            ps = conn.prepareStatement(query);
+            con = new DBContext().connection;
+            ps = con.prepareStatement(query);
             ps.setString(1, email);
             ps.setString(2, password);
             rs = ps.executeQuery();
@@ -54,8 +54,8 @@ public class Dao extends DBContext {
         List<Setting> list = new ArrayList<>();
         String query = "SELECT * FROM swp.setting";
         try {
-            conn = new DBContext().connection;
-            ps = conn.prepareStatement(query);
+            con = new DBContext().connection;
+            ps = con.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Setting(rs.getInt(1),
@@ -75,8 +75,8 @@ public class Dao extends DBContext {
         String query = "SELECT * FROM swp.setting\n"
                 + "where setting_id=?";
         try {
-            conn = new DBContext().connection;
-            ps = conn.prepareStatement(query);
+            con = new DBContext().connection;
+            ps = con.prepareStatement(query);
             ps.setString(1, id);
             rs = ps.executeQuery();
             if(rs.next()) {
@@ -92,6 +92,50 @@ public class Dao extends DBContext {
         }
         return null;
     }
+    
+    public void UpdatePesonalInfo(int user_id, String name, String mobile) {
+        String sql = "update user set full_name=?, mobile=? where user_id=?;";
+        try {
+            con = new DBContext().connection;
+            ps = con.prepareStatement(sql);
+            ps.setInt(3, user_id);
+            ps.setString(1, name);            
+            ps.setString(2, mobile);
+            ps.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        System.out.println("updated");
+    }
+    
+    public void UpdateAvatarURL(int user_id, String avatar_url) {
+        String sql = "update User set avatar_url=? where user_id=?;";
+        try {
+            con = new DBContext().connection;
+            ps = con.prepareStatement(sql);
+            ps.setInt(2, user_id);
+            ps.setString(1, avatar_url);            
+            ps.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        System.out.println("updated");
+    }
+    
+    public void UpdateActive(int user_id, boolean active) {
+        String sql = "update User set active=? where user_id=?;";
+        try {
+            con = new DBContext().connection;
+            ps = con.prepareStatement(sql);
+            ps.setInt(2, user_id);
+            ps.setBoolean(1, active);            
+            ps.execute();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        System.out.println("updated");
+    }
+        
 
     public static void main(String[] args) {
         Dao dao = new Dao();

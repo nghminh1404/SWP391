@@ -47,7 +47,8 @@ public class LoginController extends HttpServlet {
         } else {
             HttpSession session =request.getSession();
             session.setAttribute("user", u);
-            request.getRequestDispatcher("index.html").forward(request, response);
+            response.sendRedirect("demodashboard");
+//            request.getRequestDispatcher("demodashboard").forward(request, response);
         }
     }
     /**

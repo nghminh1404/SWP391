@@ -28,7 +28,11 @@ public class User {
         this.email = email;
         this.mobile = mobile;
         this.password = password;
-        this.avatar_url = avatar_url;
+        if (avatar_url.isEmpty()) {
+            this.avatar_url = "assets/img/profiles/avatar-main.jpg";
+        } else {
+            this.avatar_url = avatar_url;            
+        }
         this.status = status;
         this.note = note;
     }
