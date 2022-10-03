@@ -1,0 +1,116 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Controller;
+
+import dal.Dao;
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import Model.User;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.http.Part;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.nio.file.Paths;
+
+/**
+ *
+ * @author Hp
+ */
+@MultipartConfig
+public class EditProfileController extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("editprofile.jsp").forward(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = (String) request.getParameter("action");
+        Dao u = new Dao();
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        switch (action) {
+            case "changeavatar":
+                Part file = request.getPart("avatar");
+                String imageFileName = Paths.get(file.getSubmittedFileName()).getFileName().toString();
+                System.out.println("------------------" + imageFileName);
+                String uploadPath = "E:/LearningSpace/JavaWeb/Clone/g4/web/assets/img/upload/" + imageFileName;
+                try {
+                    try ( FileOutputStream fos = new FileOutputStream(uploadPath)) {
+                        InputStream is = file.getInputStream();
+
+                        byte[] data = new byte[is.available()];
+                        is.read(data);
+                        fos.write(data);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                u.UpdateAvatarURL(user.getUser_id(), "assets/img/upload/" + imageFileName);               
+                break;
+
+            case "editpersonalinfo":
+                String name = request.getParameter("name");
+                String mobile = request.getParameter("mobile");
+//                if (!mobile.matches("^(((\\+|)84)|0)+(3|5|7|8|9|1[2|6|8|9])+([0-9]{8})$")) {
+//                    request.setAttribute("error", "Please enter a phone number in VN!");
+//                    request.getRequestDispatcher("editprofile").forward(request, response);
+//                }
+                u.UpdatePesonalInfo(user.getUser_id(), name, mobile);
+                break;
+            default:
+                throw new AssertionError();
+        }
+        user = u.login(user.getEmail(), user.getPassword());
+        session.setAttribute("user", user);
+        response.sendRedirect("profile");
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}

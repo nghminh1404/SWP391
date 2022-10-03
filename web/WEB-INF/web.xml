@@ -13,8 +13,8 @@
         <servlet-class>Controller.ProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditPersionalInfoController</servlet-name>
-        <servlet-class>Controller.EditPersionalInfoController</servlet-class>
+        <servlet-name>EditProfileController</servlet-name>
+        <servlet-class>Controller.EditProfileController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DemoDashboardController</servlet-name>
@@ -33,8 +33,8 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditPersionalInfoController</servlet-name>
-        <url-pattern>/editpersonalinfo</url-pattern>
+        <servlet-name>EditProfileController</servlet-name>
+        <url-pattern>/editprofile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>

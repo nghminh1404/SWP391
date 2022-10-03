@@ -139,7 +139,8 @@ public class Dao extends DBContext {
 
     public static void main(String[] args) {
         Dao dao = new Dao();
-        Setting u = dao.getSettingbyid("2");
+//        Setting u = dao.getSettingbyid("2");
+        User u = dao.login("anhnapu@mail.com", "Kkkkk1312");
         System.out.println(u);
     }
 }
