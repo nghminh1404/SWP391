@@ -1,48 +1,70 @@
 <%-- 
-    Document   : demodashboard
-    Created on : Sep 27, 2022, 9:41:04 AM
-    Author     : Hp
+    Document   : UserlList
+    Created on : Sep 23, 2022, 12:11:28 AM
+    Author     : PC
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
     <head>
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>SWP</title>
+        <title>User List</title>
         <link rel="shortcut icon" href="assets/img/favicon.png">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
         <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
+        <script src="../../assets/js/script.js" type="text/javascript"></script>
+        <style>
+            #changes {
+                float:left;
+                width: 50%
+            }
+            #frmSearch {
+                float:right;
+                   
+            }
+        </style>
     </head>
     <body>
         <div class="main-wrapper">
+
             <div class="header">
+
                 <div class="header-left">
-                    <a href="demodashboard.html" class="logo">
+                    <a href="index.html" class="logo">
                         <img src="assets/img/logo.png" alt="Logo">
                     </a>
-                    <a href="demodashboard.html" class="logo logo-small">
+                    <a href="index.html" class="logo logo-small">
                         <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
                     </a>
                 </div>
+
                 <a href="javascript:void(0);" id="toggle_btn">
                     <i class="fas fa-align-left"></i>
                 </a>
+
                 <div class="top-nav-search">
                     <form>
                         <input type="text" class="form-control" placeholder="Search here">
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
+
+
                 <a class="mobile_btn" id="mobile_btn">
                     <i class="fas fa-bars"></i>
                 </a>
+
+
                 <ul class="nav user-menu">
+
                     <li class="nav-item dropdown noti-dropdown">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                             <i class="far fa-bell"></i> <span class="badge badge-pill">3</span>
@@ -58,7 +80,7 @@
                                         <a href="#">
                                             <div class="media">
                                                 <span class="avatar avatar-sm">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-02.jpg">
+                                                    <img class="avatar-img rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details"><span class="noti-title">Carlson Tech</span> has approved <span class="noti-title">your estimate</span></p>
@@ -84,7 +106,7 @@
                                         <a href="#">
                                             <div class="media">
                                                 <span class="avatar avatar-sm">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-17.jpg">
+                                                    <img class="avatar-img rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details"><span class="noti-title">John Hendry</span> sent a cancellation request <span class="noti-title">Apple iPhone XR</span></p>
@@ -97,7 +119,7 @@
                                         <a href="#">
                                             <div class="media">
                                                 <span class="avatar avatar-sm">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-13.jpg">
+                                                    <img class="avatar-img rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details"><span class="noti-title">Mercury Software Inc</span> added a new product <span class="noti-title">Apple MacBook Pro</span></p>
@@ -113,13 +135,15 @@
                             </div>
                         </div>
                     </li>
+
+
                     <li class="nav-item dropdown has-arrow">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                             <span class="user-img"><img class="rounded-circle" src="${sessionScope.user.avatar_url}" width="31" alt="Ryan Taylor"></span>
                         </a>
                         <div class="dropdown-menu">
                             <div class="user-header">
-                               <div class="avatar avatar-sm">
+                                <div class="avatar avatar-sm">
                                     <img src="${sessionScope.user.avatar_url}" alt="User Image" class="avatar-img rounded-circle">
                                 </div>
                                 <div class="user-text">
@@ -127,13 +151,17 @@
                                     <p class="text-muted mb-0">${sessionScope.user.setting.setting_title}</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="profile">My Profile</a>
-                            <a class="dropdown-item" href="profile">Change password</a>
-                            <a class="dropdown-item" href="index.html">Logout</a>
+                            <a class="dropdown-item" href="profile.html">My Profile</a>
+                            <a class="dropdown-item" href="inbox.html">Inbox</a>
+                            <a class="dropdown-item" href="login.html">Logout</a>
                         </div>
                     </li>
+
                 </ul>
+
             </div>
+
+
             <div class="sidebar" id="sidebar">
                 <div class="sidebar-inner slimscroll">
                     <div id="sidebar-menu" class="sidebar-menu">
@@ -141,10 +169,10 @@
                             <li class="menu-title">
                                 <span>Main Menu</span>
                             </li>
-                            <li class="submenu active">
+                            <li class="submenu">
                                 <a href="#"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                                 <ul>
-                                    <li><a href="demodashboard.html" class="active">Admin Dashboard</a></li>
+                                    <li><a href="index.html">Admin Dashboard</a></li>
                                     <li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
                                     <li><a href="student-dashboard.html">Student Dashboard</a></li>
                                 </ul>
@@ -212,7 +240,7 @@
                             <li>
                                 <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
                             </li>
-                            <li>
+                            <li class="active">
                                 <a href="library.html"><i class="fas fa-book"></i> <span>Library</span></a>
                             </li>
                             <li class="menu-title">
@@ -292,291 +320,140 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="page-wrapper">
                 <div class="content container-fluid">
+
                     <div class="page-header">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h3 class="page-title">Welcome Admin!</h3>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="page-title">User List</h3>
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item active">Dashboard</li>
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">User list</li>
                                 </ul>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                            <div class="card bg-one w-100">
-                                <div class="card-body">
-                                    <div class="db-widgets d-flex justify-content-between align-items-center">
-                                        <div class="db-icon">
-                                            <i class="fas fa-user-graduate"></i>
-                                        </div>
-                                        <div class="db-info">
-                                            <h3>50055</h3>
-                                            <h6>Students</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                            <div class="card bg-two w-100">
-                                <div class="card-body">
-                                    <div class="db-widgets d-flex justify-content-between align-items-center">
-                                        <div class="db-icon">
-                                            <i class="fas fa-crown"></i>
-                                        </div>
-                                        <div class="db-info">
-                                            <h3>50+</h3>
-                                            <h6>Awards</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                            <div class="card bg-three w-100">
-                                <div class="card-body">
-                                    <div class="db-widgets d-flex justify-content-between align-items-center">
-                                        <div class="db-icon">
-                                            <i class="fas fa-building"></i>
-                                        </div>
-                                        <div class="db-info">
-                                            <h3>30+</h3>
-                                            <h6>Department</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                            <div class="card bg-four w-100">
-                                <div class="card-body">
-                                    <div class="db-widgets d-flex justify-content-between align-items-center">
-                                        <div class="db-icon">
-                                            <i class="fas fa-file-invoice-dollar"></i>
-                                        </div>
-                                        <div class="db-info">
-                                            <h3>$505</h3>
-                                            <h6>Revenue</h6>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-auto text-right float-right ml-auto">
+                                <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                                <a href="add-books.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 col-lg-6">
-                            <div class="card card-chart">
-                                <div class="card-header">
-                                    <div class="row align-items-center">
-                                        <div class="col-6">
-                                            <h5 class="card-title">Revenue</h5>
-                                        </div>
-                                        <div class="col-6">
-                                            <ul class="list-inline-group text-right mb-0 pl-0">
-                                                <li class="list-inline-item">
-                                                    <div class="form-group mb-0 amount-spent-select">
-                                                        <select class="form-control form-control-sm">
-                                                            <option>Today</option>
-                                                            <option>Last Week</option>
-                                                            <option>Last Month</option>
-                                                        </select>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <div>
+                                        <form  id= "changes" action="filter" method="GET">
+                                            Role: <select onchange="document.g" name="setting_id">
+                                                <option value="-1">------ALL------</option>
+                                                <c:forEach items="${requestScope.settings}" var="s">
+                                                    <option
+                                                        <c:if test="${param.setting_id eq s.setting_id}">
+                                                            selected="selected"
+                                                        </c:if>
+                                                        value="${s.setting_id}">${s.setting_title}</option>
+                                                </c:forEach>
+                                            </select> <br/>
+                                            Status: <input 
+                                                <c:if test="${param.status eq 'activate'}">
+                                                    checked="checked"
+                                                </c:if>
+                                                type="radio" name="status" value= "activate" /> Activate
+                                            <input type="radio"
+                                                   <c:if test="${param.status eq 'deactivate'}">
+                                                       checked="checked"
+                                                   </c:if>
+                                                   name="status" value="deactivate" /> Deactivate
+                                            <input type="radio"
+                                                   <c:if test="${param.status eq null or param.status eq 'both'}">
+                                                       checked="checked"
+                                                   </c:if>
+                                                   name="status" value="both"/> Both
+                                            <br/>
+                                            <input type="submit" value="Search"/>
+                                            
+                                        </form>
+                                        <form id = "frmSearch" action ="usersearch" method ="POST">
+                                            <input type="text" name="keyword" class="form-control" placeholder="Search here">
+                                            <button class="btn" type="submit" hidden><i class="fas fa-search"></i></button>
+                                        </form>                                       
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="apexcharts-area"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-6">
-                            <div class="card card-chart">
-                                <div class="card-header">
-                                    <div class="row align-items-center">
-                                        <div class="col-6">
-                                            <h5 class="card-title">Number of Students</h5>
-                                        </div>
-                                        <div class="col-6">
-                                            <ul class="list-inline-group text-right mb-0 pl-0">
-                                                <li class="list-inline-item">
-                                                    <div class="form-group mb-0 amount-spent-select">
-                                                        <select class="form-control form-control-sm">
-                                                            <option>Today</option>
-                                                            <option>Last Week</option>
-                                                            <option>Last Month</option>
-                                                        </select>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="bar"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 d-flex">
-                            <div class="card flex-fill">
-                                <div class="card-header">
-                                    <h5 class="card-title">Star Students</h5>
-                                </div>
-                                <div class="card-body">
+                                    
                                     <div class="table-responsive">
-                                        <table class="table table-hover table-center">
-                                            <thead class="thead-light">
+                                        <br>
+                                        <table class="table table-hover table-center mb-0 datatable">                                          
+                                            <thead>
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Name</th>
-                                                    <th class="text-center">Marks</th>
-                                                    <th class="text-center">Percentage</th>
-                                                    <th class="text-right">Year</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile</th>
+                                                    <th>Role</th>
+                                                    <th>Status</th>
+                                                    <th class="text-right">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE2209</div>
-                                                    </td>
-                                                    <td class="text-nowrap">John Smith</td>
-                                                    <td class="text-center">1185</td>
-                                                    <td class="text-center">98%</td>
-                                                    <td class="text-right">
-                                                        <div>2019</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE1245</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Jolie Hoskins</td>
-                                                    <td class="text-center">1195</td>
-                                                    <td class="text-center">99.5%</td>
-                                                    <td class="text-right">
-                                                        <div>2018</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE1625</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Pennington Joy</td>
-                                                    <td class="text-center">1196</td>
-                                                    <td class="text-center">99.6%</td>
-                                                    <td class="text-right">
-                                                        <div>2017</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE2516</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Millie Marsden</td>
-                                                    <td class="text-center">1187</td>
-                                                    <td class="text-center">98.2%</td>
-                                                    <td class="text-right">
-                                                        <div>2016</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE2209</div>
-                                                    </td>
-                                                    <td class="text-nowrap">John Smith</td>
-                                                    <td class="text-center">1185</td>
-                                                    <td class="text-center">98%</td>
-                                                    <td class="text-right">
-                                                        <div>2015</div>
-                                                    </td>
-                                                </tr>
+                                                <c:forEach items= "${requestScope.users}" var="u">
+                                                    <tr>
+                                                        <td>${u.user_id}</td>
+                                                        <td> 
+                                                            <h2 class="table-avatar">
+                                                                ${u.full_name}
+                                                            </h2>
+                                                        </td>
+                                                        <td>${u.email}</td>
+                                                        <td>${u.mobile}</td>
+                                                        <td>${u.setting.setting_title}</td>
+                                                        <td>
+                                                            <span class="badge badge-success"><c:if test="${u.status == true}"> Activate </c:if></span> 
+                                                            <span class="badge badge-danger"><c:if test="${u.status == false}"> Deactivate </c:if></span>
+                                                            </td>
+                                                            <td>
+                                                                <a href="userdetail?id=${u.user_id}">View</a>
+                                                            <!-- <a href="#">Edit</a></td>-->  
+                                                        </td> 
+                                                    </tr>
+                                                </c:forEach>  
+                                                <!--                                           <td class="text-right">
+                                                                                                <div class="actions">
+                                                                                                    <a href="edit-books.html" class="btn btn-sm bg-success-light mr-2">
+                                                                                                        <i class="fas fa-pen"></i>
+                                                                                                    </a>
+                                                                                                    <a href="#" class="btn btn-sm bg-danger-light">
+                                                                                                        <i class="fas fa-trash"></i>
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                            </td>-->                                          
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 d-flex">
-                            <div class="card flex-fill">
-                                <div class="card-header">
-                                    <h5 class="card-title">Student Activity</h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="activity-feed">
-                                        <li class="feed-item">
-                                            <div class="feed-date">Apr 13</div>
-                                            <span class="feed-text"><a>John Doe</a> won 1st place in <a>"Chess"</a></span>
-                                        </li>
-                                        <li class="feed-item">
-                                            <div class="feed-date">Mar 21</div>
-                                            <span class="feed-text"><a>Justin Lee</a> participated in <a href="invoice.html">"Carrom"</a></span>
-                                        </li>
-                                        <li class="feed-item">
-                                            <div class="feed-date">Feb 2</div>
-                                            <span class="feed-text"><a>Justin Lee</a>attended internation conference in <a href="profile.html">"St.John School"</a></span>
-                                        </li>
-                                        <li class="feed-item">
-                                            <div class="feed-date">Apr 13</div>
-                                            <span class="feed-text"><a>John Doe</a> won 1st place in <a>"Chess"</a></span>
-                                        </li>
-                                        <li class="feed-item">
-                                            <div class="feed-date">Mar 21</div>
-                                            <span class="feed-text"><a>Justin Lee</a> participated in <a href="invoice.html">"Carrom"</a></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card flex-fill fb sm-box">
-                                <i class="fab fa-facebook"></i>
-                                <h6>50,095</h6>
-                                <p>Likes</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card flex-fill twitter sm-box">
-                                <i class="fab fa-twitter"></i>
-                                <h6>48,596</h6>
-                                <p>Follows</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card flex-fill insta sm-box">
-                                <i class="fab fa-instagram"></i>
-                                <h6>52,085</h6>
-                                <p>Follows</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card flex-fill linkedin sm-box">
-                                <i class="fab fa-linkedin-in"></i>
-                                <h6>69,050</h6>
-                                <p>Follows</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
+
                 <footer>
                     <p>Copyright © 2020 Dreamguys.</p>
                 </footer>
+
             </div>
+
         </div>
+
+
         <script src="assets/js/jquery-3.6.0.min.js"></script>
+
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
         <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="assets/plugins/apexchart/apexcharts.min.js"></script>
-        <script src="assets/plugins/apexchart/chart-data.js"></script>
+
+        <script src="assets/plugins/datatables/datatables.min.js"></script>
+
         <script src="assets/js/script.js"></script>
     </body>
-
 </html>

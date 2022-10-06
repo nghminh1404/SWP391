@@ -11,15 +11,16 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author Ngo Tung Son
  */
-public class DBContext {
+public abstract class ADBContext<T> {
 
     protected Connection connection;
 
-    public DBContext() {
+    public ADBContext() {
         try {
             String user = "root";
             String pass = "123456";
@@ -27,7 +28,17 @@ public class DBContext {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ADBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public abstract ArrayList<T> list();
+
+    public abstract T get(int id);
+
+    public abstract void insert(T model);
+
+    public abstract void update(T model);
+
+    public abstract void delete(T model);
 }

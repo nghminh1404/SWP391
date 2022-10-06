@@ -1,17 +1,18 @@
 <%-- 
-    Document   : demodashboard
-    Created on : Sep 27, 2022, 9:41:04 AM
+    Document   : profile
+    Created on : Sep 25, 2022, 10:39:40 AM
     Author     : Hp
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-
+    <!-- Mirrored from preschool.dreamguystech.com/html-template/profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:38 GMT -->
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>SWP</title>
+        <title>SWP - Profile</title>
         <link rel="shortcut icon" href="assets/img/favicon.png">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
         <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -23,10 +24,10 @@
         <div class="main-wrapper">
             <div class="header">
                 <div class="header-left">
-                    <a href="demodashboard.html" class="logo">
+                    <a href="index.html" class="logo">
                         <img src="assets/img/logo.png" alt="Logo">
                     </a>
-                    <a href="demodashboard.html" class="logo logo-small">
+                    <a href="index.html" class="logo logo-small">
                         <img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
                     </a>
                 </div>
@@ -71,7 +72,7 @@
                                         <a href="#">
                                             <div class="media">
                                                 <span class="avatar avatar-sm">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
+                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-11.jpg">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details"><span class="noti-title">International Software Inc</span> has sent you a invoice in the amount of <span class="noti-title">$218</span></p>
@@ -119,17 +120,17 @@
                         </a>
                         <div class="dropdown-menu">
                             <div class="user-header">
-                               <div class="avatar avatar-sm">
+                                <div class="avatar avatar-sm">
                                     <img src="${sessionScope.user.avatar_url}" alt="User Image" class="avatar-img rounded-circle">
                                 </div>
                                 <div class="user-text">
                                     <h6>${sessionScope.user.full_name}</h6>
-                                    <p class="text-muted mb-0">${sessionScope.user.setting.setting_title}</p>
+                                    <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
                             <a class="dropdown-item" href="profile">My Profile</a>
-                            <a class="dropdown-item" href="profile">Change password</a>
-                            <a class="dropdown-item" href="index.html">Logout</a>
+                            <a class="dropdown-item" href="#">Inbox</a>
+                            <a class="dropdown-item" href="login">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -141,10 +142,10 @@
                             <li class="menu-title">
                                 <span>Main Menu</span>
                             </li>
-                            <li class="submenu active">
+                            <li class="submenu">
                                 <a href="#"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                                 <ul>
-                                    <li><a href="demodashboard.html" class="active">Admin Dashboard</a></li>
+                                    <li><a href="index.html">Admin Dashboard</a></li>
                                     <li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
                                     <li><a href="student-dashboard.html">Student Dashboard</a></li>
                                 </ul>
@@ -296,287 +297,113 @@
                 <div class="content container-fluid">
                     <div class="page-header">
                         <div class="row">
-                            <div class="col-sm-12">
-                                <h3 class="page-title">Welcome Admin!</h3>
+                            <div class="col">
+                                <h3 class="page-title">Profile</h3>
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item active">Dashboard</li>
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Profile</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                            <div class="card bg-one w-100">
-                                <div class="card-body">
-                                    <div class="db-widgets d-flex justify-content-between align-items-center">
-                                        <div class="db-icon">
-                                            <i class="fas fa-user-graduate"></i>
-                                        </div>
-                                        <div class="db-info">
-                                            <h3>50055</h3>
-                                            <h6>Students</h6>
+                        <div class="col-md-12">
+                            <div class="profile-header">
+                                <div class="row align-items-center">
+                                    <div class="col-auto profile-image">
+                                        <a href="#">
+                                            <img class="rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
+                                        </a>
+                                    </div>
+                                    <div class="col ml-md-n2 profile-user-info">
+                                        <!--<h6 class="text-muted">Link avatar</h6>-->
+                                        <form action="changeavatar">
+                                            <input type="file" name="file">
+                                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                                        </form>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="profile-menu">
+                                <ul class="nav nav-tabs nav-tabs-solid">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#password_tab">Password</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content profile-tab-cont">
+                                <div class="tab-pane fade show active" id="per_details_tab">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title d-flex justify-content-between">
+                                                        <span>Personal Details</span>                                                        
+                                                    </h5>
+                                                    <div class="row">
+                                                        <div class="col-md-10 col-lg-6">
+                                                            <form action="editpersonalinfo" method="post">
+                                                                <div class="form-group">
+                                                                    <label>Name</label>
+                                                                    <input type="text" class="form-control" name="name" value="${sessionScope.user.full_name}" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Email ID</label>
+                                                                    <input type="email" class="form-control" name="email" value="${sessionScope.user.email}" disabled="true">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Mobile</label>
+                                                                    <input type="number" class="mobile" value="${sessionScope.user.mobile}" name="mobile" required>
+                                                                </div>
+                                                                <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>                                     
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div id="password_tab" class="tab-pane fade">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Change Password</h5>
+                                            <div class="row">
+                                                <div class="col-md-10 col-lg-6">
+                                                    <form action="changepassword" method="post">
+                                                        <div class="form-group">
+                                                            <label>Old Password</label>
+                                                            <input type="password" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>New Password</label>
+                                                            <input type="password" class="form-control">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Confirm Password</label>
+                                                            <input type="password" class="form-control">
+                                                        </div>
+                                                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                            <div class="card bg-two w-100">
-                                <div class="card-body">
-                                    <div class="db-widgets d-flex justify-content-between align-items-center">
-                                        <div class="db-icon">
-                                            <i class="fas fa-crown"></i>
-                                        </div>
-                                        <div class="db-info">
-                                            <h3>50+</h3>
-                                            <h6>Awards</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                            <div class="card bg-three w-100">
-                                <div class="card-body">
-                                    <div class="db-widgets d-flex justify-content-between align-items-center">
-                                        <div class="db-icon">
-                                            <i class="fas fa-building"></i>
-                                        </div>
-                                        <div class="db-info">
-                                            <h3>30+</h3>
-                                            <h6>Department</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                            <div class="card bg-four w-100">
-                                <div class="card-body">
-                                    <div class="db-widgets d-flex justify-content-between align-items-center">
-                                        <div class="db-icon">
-                                            <i class="fas fa-file-invoice-dollar"></i>
-                                        </div>
-                                        <div class="db-info">
-                                            <h3>$505</h3>
-                                            <h6>Revenue</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 col-lg-6">
-                            <div class="card card-chart">
-                                <div class="card-header">
-                                    <div class="row align-items-center">
-                                        <div class="col-6">
-                                            <h5 class="card-title">Revenue</h5>
-                                        </div>
-                                        <div class="col-6">
-                                            <ul class="list-inline-group text-right mb-0 pl-0">
-                                                <li class="list-inline-item">
-                                                    <div class="form-group mb-0 amount-spent-select">
-                                                        <select class="form-control form-control-sm">
-                                                            <option>Today</option>
-                                                            <option>Last Week</option>
-                                                            <option>Last Month</option>
-                                                        </select>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="apexcharts-area"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-6">
-                            <div class="card card-chart">
-                                <div class="card-header">
-                                    <div class="row align-items-center">
-                                        <div class="col-6">
-                                            <h5 class="card-title">Number of Students</h5>
-                                        </div>
-                                        <div class="col-6">
-                                            <ul class="list-inline-group text-right mb-0 pl-0">
-                                                <li class="list-inline-item">
-                                                    <div class="form-group mb-0 amount-spent-select">
-                                                        <select class="form-control form-control-sm">
-                                                            <option>Today</option>
-                                                            <option>Last Week</option>
-                                                            <option>Last Month</option>
-                                                        </select>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="bar"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 d-flex">
-                            <div class="card flex-fill">
-                                <div class="card-header">
-                                    <h5 class="card-title">Star Students</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-center">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th class="text-center">Marks</th>
-                                                    <th class="text-center">Percentage</th>
-                                                    <th class="text-right">Year</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE2209</div>
-                                                    </td>
-                                                    <td class="text-nowrap">John Smith</td>
-                                                    <td class="text-center">1185</td>
-                                                    <td class="text-center">98%</td>
-                                                    <td class="text-right">
-                                                        <div>2019</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE1245</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Jolie Hoskins</td>
-                                                    <td class="text-center">1195</td>
-                                                    <td class="text-center">99.5%</td>
-                                                    <td class="text-right">
-                                                        <div>2018</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE1625</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Pennington Joy</td>
-                                                    <td class="text-center">1196</td>
-                                                    <td class="text-center">99.6%</td>
-                                                    <td class="text-right">
-                                                        <div>2017</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE2516</div>
-                                                    </td>
-                                                    <td class="text-nowrap">Millie Marsden</td>
-                                                    <td class="text-center">1187</td>
-                                                    <td class="text-center">98.2%</td>
-                                                    <td class="text-right">
-                                                        <div>2016</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-nowrap">
-                                                        <div>PRE2209</div>
-                                                    </td>
-                                                    <td class="text-nowrap">John Smith</td>
-                                                    <td class="text-center">1185</td>
-                                                    <td class="text-center">98%</td>
-                                                    <td class="text-right">
-                                                        <div>2015</div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 d-flex">
-                            <div class="card flex-fill">
-                                <div class="card-header">
-                                    <h5 class="card-title">Student Activity</h5>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="activity-feed">
-                                        <li class="feed-item">
-                                            <div class="feed-date">Apr 13</div>
-                                            <span class="feed-text"><a>John Doe</a> won 1st place in <a>"Chess"</a></span>
-                                        </li>
-                                        <li class="feed-item">
-                                            <div class="feed-date">Mar 21</div>
-                                            <span class="feed-text"><a>Justin Lee</a> participated in <a href="invoice.html">"Carrom"</a></span>
-                                        </li>
-                                        <li class="feed-item">
-                                            <div class="feed-date">Feb 2</div>
-                                            <span class="feed-text"><a>Justin Lee</a>attended internation conference in <a href="profile.html">"St.John School"</a></span>
-                                        </li>
-                                        <li class="feed-item">
-                                            <div class="feed-date">Apr 13</div>
-                                            <span class="feed-text"><a>John Doe</a> won 1st place in <a>"Chess"</a></span>
-                                        </li>
-                                        <li class="feed-item">
-                                            <div class="feed-date">Mar 21</div>
-                                            <span class="feed-text"><a>Justin Lee</a> participated in <a href="invoice.html">"Carrom"</a></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card flex-fill fb sm-box">
-                                <i class="fab fa-facebook"></i>
-                                <h6>50,095</h6>
-                                <p>Likes</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card flex-fill twitter sm-box">
-                                <i class="fab fa-twitter"></i>
-                                <h6>48,596</h6>
-                                <p>Follows</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card flex-fill insta sm-box">
-                                <i class="fab fa-instagram"></i>
-                                <h6>52,085</h6>
-                                <p>Follows</p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card flex-fill linkedin sm-box">
-                                <i class="fab fa-linkedin-in"></i>
-                                <h6>69,050</h6>
-                                <p>Follows</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <footer>
-                    <p>Copyright © 2020 Dreamguys.</p>
-                </footer>
             </div>
         </div>
-        <script src="assets/js/jquery-3.6.0.min.js"></script>
+        <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.6.0.min.js"></script>
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-        <script src="assets/plugins/apexchart/apexcharts.min.js"></script>
-        <script src="assets/plugins/apexchart/chart-data.js"></script>
         <script src="assets/js/script.js"></script>
     </body>
-
+    <!-- Mirrored from preschool.dreamguystech.com/html-template/profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:39 GMT -->
 </html>
