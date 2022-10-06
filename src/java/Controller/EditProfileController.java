@@ -17,6 +17,8 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.Part;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -47,6 +49,9 @@ public class EditProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Dao u = new Dao();
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         request.getRequestDispatcher("editprofile.jsp").forward(request, response);
     }
 
@@ -67,32 +72,27 @@ public class EditProfileController extends HttpServlet {
         User user = (User) session.getAttribute("user");
         switch (action) {
             case "changeavatar":
-                Part file = request.getPart("avatar");
-                String imageFileName = Paths.get(file.getSubmittedFileName()).getFileName().toString();
-                System.out.println("------------------" + imageFileName);
-                String uploadPath = "E:/LearningSpace/JavaWeb/Clone/g4/web/assets/img/upload/" + imageFileName;
-                try {
-                    try ( FileOutputStream fos = new FileOutputStream(uploadPath)) {
-                        InputStream is = file.getInputStream();
+                String uploadFileFolder = request.getServletContext().getRealPath("/assets/img/upload");
+                Path uploadPath = Paths.get(uploadFileFolder);
+                if (!Files.exists(uploadPath)) {
+                    Files.createDirectories(uploadPath);
 
-                        byte[] data = new byte[is.available()];
-                        is.read(data);
-                        fos.write(data);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-                u.UpdateAvatarURL(user.getUser_id(), "assets/img/upload/" + imageFileName);               
+
+                Part image = request.getPart("avatar");
+                String imageFilename = Paths.get(image.getSubmittedFileName()).getFileName().toString();
+                image.write(Paths.get(uploadPath.toString(), imageFilename).toString());
+                u.UpdateAvatarURL(user.getUser_id(), "assets/img/upload/" + imageFilename);
+
                 break;
 
             case "editpersonalinfo":
                 String name = request.getParameter("name");
                 String mobile = request.getParameter("mobile");
-//                if (!mobile.matches("^(((\\+|)84)|0)+(3|5|7|8|9|1[2|6|8|9])+([0-9]{8})$")) {
-//                    request.setAttribute("error", "Please enter a phone number in VN!");
-//                    request.getRequestDispatcher("editprofile").forward(request, response);
-//                }
+                if (!mobile.matches("^(84|0[3|5|7|8|9])+([0-9]{8})$")) {
+                    request.setAttribute("error", "Please enter a phone number in VN!");
+                    doGet(request, response);
+                }                
                 u.UpdatePesonalInfo(user.getUser_id(), name, mobile);
                 break;
             default:

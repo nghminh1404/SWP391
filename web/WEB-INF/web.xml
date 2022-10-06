@@ -25,8 +25,8 @@
         <servlet-class>Controller.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangeAvatarController</servlet-name>
-        <servlet-class>Controller.ChangeAvatarController</servlet-class>
+        <servlet-name>ChangeAvatar</servlet-name>
+        <servlet-class>Controller.AvatarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
@@ -53,7 +53,7 @@
         <url-pattern>/changepassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ChangeAvatarController</servlet-name>
+        <servlet-name>ChangeAvatar</servlet-name>
         <url-pattern>/changeavatar</url-pattern>
     </servlet-mapping>
     <session-config>

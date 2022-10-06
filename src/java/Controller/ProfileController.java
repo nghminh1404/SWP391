@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import Model.User;
+import dal.Dao;
 
 /**
  *
@@ -55,6 +56,9 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        Dao u = new Dao();
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         request.getRequestDispatcher("profile.jsp").forward(request, response);
     } 
 

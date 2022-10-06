@@ -22,7 +22,7 @@
     </head>
     <body>
         <div class="main-wrapper">
-            <div class="header">
+<div class="header">
                 <div class="header-left">
                     <a href="index.html" class="logo">
                         <img src="assets/img/logo.png" alt="Logo">
@@ -98,7 +98,7 @@
                                         <a href="#">
                                             <div class="media">
                                                 <span class="avatar avatar-sm">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-13.jpg">
+                                                    <img class="avatar-img rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details"><span class="noti-title">Mercury Software Inc</span> added a new product <span class="noti-title">Apple MacBook Pro</span></p>
@@ -116,7 +116,7 @@
                     </li>
                     <li class="nav-item dropdown has-arrow">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <span class="user-img"><img class="rounded-circle" src="${sessionScope.user.avatar_url}" width="31" height="31" style="object-fit: cover;" alt="Ryan Taylor"width="31" height="31" style="object-fit: cover;" alt="Ryan Tayl></span>
+                            <span class="user-img"><img class="rounded-circle" src="${sessionScope.user.avatar_url}" width="31" height="31" style="object-fit: cover;" alt="Ryan Taylor"></span>
                         </a>
                         <div class="dropdown-menu">
                             <div class="user-header">
@@ -293,6 +293,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="page-wrapper">
                 <div class="content container-fluid">
                     <div class="page-header">
@@ -300,7 +301,7 @@
                             <div class="col">
                                 <h3 class="page-title">Profile</h3>
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="demodashboard">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Profile</li>
                                 </ul>
                             </div>

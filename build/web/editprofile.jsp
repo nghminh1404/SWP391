@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-<div class="main-wrapper">
+        <div class="main-wrapper">
             <div class="header">
                 <div class="header-left">
                     <a href="index.html" class="logo">
@@ -360,7 +360,8 @@
                                                                 <div class="form-group">
                                                                     <label>Mobile</label>
                                                                     <input type="number" class="mobile" value="${sessionScope.user.mobile}" name="mobile" required>
-                                                                </div>                                                                    
+                                                                </div>    
+                                                                <p style="color: red;">${requestScope.error}</p>
                                                                 <button class="btn btn-primary" type="submit">Save Changes</button>
                                                             </form>
                                                         </div>
