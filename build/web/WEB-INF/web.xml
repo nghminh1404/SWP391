@@ -28,6 +28,10 @@
         <servlet-name>ChangeAvatar</servlet-name>
         <servlet-class>Controller.AvatarController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>WebContactInfoController</servlet-name>
+        <servlet-class>Controller.WebContactInfoController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/profile</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ChangeAvatar</servlet-name>
         <url-pattern>/changeavatar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WebContactInfoController</servlet-name>
+        <url-pattern>/web_contact_info</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
