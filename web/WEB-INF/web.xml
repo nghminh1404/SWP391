@@ -28,6 +28,10 @@
         <servlet-name>ChangeAvatarController</servlet-name>
         <servlet-class>Controller.ChangeAvatarController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserSearch</servlet-name>
+        <servlet-class>Controller.UserSearch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/profile</url-pattern>
@@ -55,6 +59,34 @@
     <servlet-mapping>
         <servlet-name>ChangeAvatarController</servlet-name>
         <url-pattern>/changeavatar</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>userDetailServelet</servlet-name>
+        <servlet-class>Controller.userDetailServelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserListServelet</servlet-name>
+        <servlet-class>Controller.UserListServelet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserFilter</servlet-name>
+        <servlet-class>Controller.UserFilter</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userDetailServelet</servlet-name>
+        <url-pattern>/userdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserListServelet</servlet-name>
+        <url-pattern>/userlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserFilter</servlet-name>
+        <url-pattern>/filter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserSearch</servlet-name>
+        <url-pattern>/usersearch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
