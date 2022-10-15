@@ -9,19 +9,19 @@ package Model;
  * @author kieut
  */
 public class Setting {
-     private int setting_id;
-     private int type_id;
-     private String setting_title;
-     private String setting_value;
-     private int display_order;
-     private boolean status;
-     private String description;
 
-     public Setting() {
-     }
-     
-     
-         public Setting(int setting_id, int type_id, String setting_title, String setting_value, int display_order, boolean status, String description) {
+    private int setting_id;
+    private int type_id;
+    private String setting_title;
+    private String setting_value;
+    private int display_order;
+    private boolean status;
+    private String description;
+
+    public Setting() {
+    }
+
+    public Setting(int setting_id, int type_id, String setting_title, String setting_value, int display_order, boolean status, String description) {
         this.setting_id = setting_id;
         this.type_id = type_id;
         this.setting_title = setting_title;
@@ -31,63 +31,63 @@ public class Setting {
         this.description = description;
     }
 
+    public int getSetting_id() {
+        return setting_id;
+    }
 
-     public int getSetting_id() {
-          return setting_id;
-     }
+    public void setSetting_id(int setting_id) {
+        this.setting_id = setting_id;
+    }
 
-     public void setSetting_id(int setting_id) {
-          this.setting_id = setting_id;
-     }
+    public int getType_id() {
+        return type_id;
+    }
 
-     public int getType_id() {
-          return type_id;
-     }
+    public void setType_id(int type_id) {
+        this.type_id = type_id;
+    }
 
-     public void setType_id(int type_id) {
-          this.type_id = type_id;
-     }
+    public String getSetting_title() {
+        return setting_title;
+    }
 
-     public String getSetting_title() {
-          return setting_title;
-     }
+    public void setSetting_title(String setting_title) {
+        this.setting_title = setting_title;
+    }
 
-     public void setSetting_title(String setting_title) {
-          this.setting_title = setting_title;
-     }
+    public String getSetting_value() {
+        return setting_value;
+    }
 
-     public String getSetting_value() {
-          return setting_value;
-     }
+    public void setSetting_value(String setting_value) {
+        this.setting_value = setting_value;
+    }
 
-     public void setSetting_value(String setting_value) {
-          this.setting_value = setting_value;
-     }
+    public int getDisplay_order() {
+        return display_order;
+    }
 
-     public int getDisplay_order() {
-          return display_order;
-     }
+    public void setDisplay_order(int display_order) {
+        this.display_order = display_order;
+    }
 
-     public void setDisplay_order(int display_order) {
-          this.display_order = display_order;
-     }
+    public boolean isStatus() {
+        return status;
+    }
 
-     public boolean isStatus() {
-          return status;
-     }
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
-     public void setStatus(boolean status) {
-          this.status = status;
-     }
+    public String getDescription() {
+        return description;
+    }
 
-     public String getDescription() {
-          return description;
-     }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-     public void setDescription(String description) {
-          this.description = description;
-     }
-         @Override
+    @Override
     public String toString() {
         return "Setting{" + "setting_id=" + setting_id + ", type_id=" + type_id + ", setting_title=" + setting_title + ", setting_value=" + setting_value + ", display_order=" + display_order + ", status=" + status + ", description=" + description + '}';
     }

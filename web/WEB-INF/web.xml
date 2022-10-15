@@ -1,92 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <welcome-file-list>
+        <welcome-file>register</welcome-file>
+    </welcome-file-list>
     <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>Controller.LoginController</servlet-class>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>Controller.RegisterController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SettingController</servlet-name>
-        <servlet-class>Controller.SettingController</servlet-class>
+        <servlet-name>VerifyController</servlet-name>
+        <servlet-class>Controller.VerifyController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ProfileController</servlet-name>
-        <servlet-class>Controller.ProfileController</servlet-class>
+        <servlet-name>WebContactController</servlet-name>
+        <servlet-class>Controller.WebContactController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EditPersionalInfoController</servlet-name>
-        <servlet-class>Controller.EditPersionalInfoController</servlet-class>
+        <servlet-name>WebContactDetailController</servlet-name>
+        <servlet-class>Controller.WebContactDetailController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DemoDashboardController</servlet-name>
-        <servlet-class>Controller.DemoDashboardController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ChangePasswordController</servlet-name>
-        <servlet-class>Controller.ChangePasswordController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ChangeAvatarController</servlet-name>
-        <servlet-class>Controller.ChangeAvatarController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserSearch</servlet-name>
-        <servlet-class>Controller.UserSearch</servlet-class>
+        <servlet-name>ChangePassword</servlet-name>
+        <servlet-class>Controller.ChangePassword</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ProfileController</servlet-name>
-        <url-pattern>/profile</url-pattern>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditPersionalInfoController</servlet-name>
-        <url-pattern>/editpersonalinfo</url-pattern>
+        <servlet-name>VerifyController</servlet-name>
+        <url-pattern>/verify</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginController</servlet-name>
-        <url-pattern>/login</url-pattern>
+        <servlet-name>WebContactController</servlet-name>
+        <url-pattern>/web_contact</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SettingController</servlet-name>
-        <url-pattern>/setting</url-pattern>
+        <servlet-name>WebContactDetailController</servlet-name>
+        <url-pattern>/web_contact_detail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DemoDashboardController</servlet-name>
-        <url-pattern>/demodashboard</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangePasswordController</servlet-name>
+        <servlet-name>ChangePassword</servlet-name>
         <url-pattern>/changepassword</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangeAvatarController</servlet-name>
-        <url-pattern>/changeavatar</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>userDetailServelet</servlet-name>
-        <servlet-class>Controller.userDetailServelet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserListServelet</servlet-name>
-        <servlet-class>Controller.UserListServelet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UserFilter</servlet-name>
-        <servlet-class>Controller.UserFilter</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>userDetailServelet</servlet-name>
-        <url-pattern>/userdetail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserListServelet</servlet-name>
-        <url-pattern>/userlist</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserFilter</servlet-name>
-        <url-pattern>/filter</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UserSearch</servlet-name>
-        <url-pattern>/usersearch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
