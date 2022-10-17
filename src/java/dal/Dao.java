@@ -30,7 +30,7 @@ public class Dao extends DBContext {
                   + " from user u inner join user_role ur ON u.user_id = ur.user_id\n"
                   + "inner join setting s ON ur.setting_id = s.setting_id where u.email = ? AND u.password = ?";
           try {
-               con = new DBContext().connection;
+               con = new DBContext().getConnection();
                ps = con.prepareStatement(query);
                ps.setString(1, email);
                ps.setString(2, password);
@@ -57,7 +57,7 @@ public class Dao extends DBContext {
           List<Setting> list = new ArrayList<>();
           String query = "SELECT * FROM swp.setting";
           try {
-               con = new DBContext().connection;
+               con = new DBContext().getConnection();
                ps = con.prepareStatement(query);
                rs = ps.executeQuery();
                while (rs.next()) {
@@ -78,7 +78,7 @@ public class Dao extends DBContext {
           String query = "SELECT * FROM swp.setting\n"
                   + "where setting_id=?";
           try {
-               con = new DBContext().connection;
+               con = new DBContext().getConnection();
                ps = con.prepareStatement(query);
                ps.setString(1, id);
                rs = ps.executeQuery();
@@ -96,10 +96,10 @@ public class Dao extends DBContext {
           return null;
      }
 
-     public void UpdatePesonalInfo(int user_id, String name, String mobile) {
+     public void UpdatePesonalInfo(int user_id, String name, String mobile) throws Exception {
           String sql = "update user set full_name=?, mobile=? where user_id=?;";
           try {
-               con = new DBContext().connection;
+               con = new DBContext().getConnection();
                ps = con.prepareStatement(sql);
                ps.setInt(3, user_id);
                ps.setString(1, name);
@@ -111,10 +111,10 @@ public class Dao extends DBContext {
           System.out.println("updated");
      }
 
-     public void UpdateAvatarURL(int user_id, String avatar_url) {
+     public void UpdateAvatarURL(int user_id, String avatar_url) throws Exception {
           String sql = "update User set avatar_url=? where user_id=?;";
           try {
-               con = new DBContext().connection;
+               con = new DBContext().getConnection();
                ps = con.prepareStatement(sql);
                ps.setInt(2, user_id);
                ps.setString(1, avatar_url);
@@ -125,10 +125,10 @@ public class Dao extends DBContext {
           System.out.println("updated");
      }
 
-     public void UpdateActive(int user_id, boolean active) {
+     public void UpdateActive(int user_id, boolean active) throws Exception {
           String sql = "update User set active=? where user_id=?;";
           try {
-               con = new DBContext().connection;
+               con = new DBContext().getConnection();
                ps = con.prepareStatement(sql);
                ps.setInt(2, user_id);
                ps.setBoolean(1, active);
