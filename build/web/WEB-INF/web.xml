@@ -23,6 +23,10 @@
         <servlet-name>ChangePassword</servlet-name>
         <servlet-class>Controller.ChangePassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SystemPermissionController</servlet-name>
+        <servlet-class>Controller.SystemPermissionController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -42,6 +46,10 @@
     <servlet-mapping>
         <servlet-name>ChangePassword</servlet-name>
         <url-pattern>/changepassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SystemPermissionController</servlet-name>
+        <url-pattern>/systempermission</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

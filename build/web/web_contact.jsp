@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
+        <style>
+            th {
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <div class="main-wrapper">
@@ -306,21 +311,29 @@
                         <div class="col-sm-12">
                             <div class="card card-table">
                                 <div class="card-body">
-                                    <div>
-                                        <div class="top-nav-search" style="margin-bottom: 10px;">
-                                            <input id="myInput" onkeyup="tableSearch()" style="color: black" type="search" class="form-control" placeholder="Search here">
+                                    <form action="web_contact" method="post">
+                                        <div class="row" style="padding-left: 10px; justify-content: space-around">
+                                            <select name="type">
+                                                <option value="all">--- All Types ---</option>
+                                            </select>
+                                            <select name="supporter">
+                                                <option value="all">--- All Supporters ---</option>
+                                            </select>
+                                            <div class="top-nav-search">
+                                                <input id="myInput" style="color: black" type="search" class="form-control" placeholder="Search here">
+                                            </div>
+                                            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                                         </div>
-                                    </div>
+                                    </form>
                                     <div class="table-responsive">
                                         <table id="myTable" class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>Full Name</th>
-                                                    <th>Type</th>
-                                                    <th>Email</th>
-                                                    <th>Phone</th>
+                                                    <th onclick="sortTable(0)">Full Name</th>
+                                                    <th onclick="sortTable(1)">Type</th>
+                                                    <th onclick="sortTable(2)">Email</th>
+                                                    <th onclick="sortTable(3)">Phone</th>
                                                     <th>Message</th>
-                                                    <th class="text-right"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -331,19 +344,12 @@
                                                         <td>${cl.email}</td>
                                                         <td>${cl.mobile}</td>
                                                         <td><a href="web_contact_detail?contact_id=${cl.contact_id}">View</a></td>
-                                                        <td class="text-right">
-                                                            <div class="actions">
-                                                                <a href="web_contact?contact_id=${cl.contact_id}&del=1"  class="btn btn-sm bg-danger-light">
-                                                                    <i class="fas fa-trash"></i>
-                                                                </a>
-                                                            </div>
-                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate" style="float: right">
                                         <ul class="pagination">
                                             <c:if test="${page == 1}">
                                                 <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous">
@@ -355,8 +361,8 @@
                                                     <a href="web_contact?page=${page-1}" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
                                                 </li>
                                                 <li class="paginate_button page-item">
-                                                <a href="web_contact?page=${page-1}" aria-controls="DataTables_Table_0" data-dt-idx="${page-1}" tabindex="0" class="page-link">${page-1}</a>
-                                            </li>
+                                                    <a href="web_contact?page=${page-1}" aria-controls="DataTables_Table_0" data-dt-idx="${page-1}" tabindex="0" class="page-link">${page-1}</a>
+                                                </li>
                                             </c:if>
 
                                             <li class="paginate_button page-item active">
@@ -398,23 +404,77 @@
         <script src="assets/plugins/datatables/datatables.min.js"></script>
         <script src="assets/js/script.js"></script>
         <script>
-            function tableSearch() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
+//            function tableSearch() {
+//                var input, filter, table, tr, td, i, txtValue;
+//                input = document.getElementById("myInput");
+//                filter = input.value.toUpperCase();
+//                table = document.getElementById("myTable");
+//                tr = table.getElementsByTagName("tr");
+//                for (i = 0; i < tr.length; i++) {
+//                    td = tr[i].getElementsByTagName("td");
+//                    for (j = 0; j < td.length; j++) {
+//                    if (td) {
+//                        txtValue = td[j].textContent || td[j].innerText;
+//                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//                            tr[i].style.display = "";
+//                            break;
+//                        } else {
+//                            tr[i].style.display = "none";
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
                 table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td");
-                    for (j = 0; j < td.length; j++) {
-                    if (td) {
-                        txtValue = td[j].textContent || td[j].innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                            break;
-                        } else {
-                            tr[i].style.display = "none";
+                switching = true;
+                //Set the sorting direction to ascending:
+                dir = "asc";
+                /*Make a loop that will continue until
+                 no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                     first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                         one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        /*check if the two rows should switch place,
+                         based on the direction, asc or desc:*/
+                        if (dir === "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                //if so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
                             }
+                        } else if (dir === "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                //if so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /*If a switch has been marked, make the switch
+                         and mark that a switch has been done:*/
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        //Each time a switch is done, increase this count by 1:
+                        switchcount++;
+                    } else {
+                        /*If no switching has been done AND the direction is "asc",
+                         set the direction to "desc" and run the while loop again.*/
+                        if (switchcount === 0 && dir === "asc") {
+                            dir = "desc";
+                            switching = true;
                         }
                     }
                 }

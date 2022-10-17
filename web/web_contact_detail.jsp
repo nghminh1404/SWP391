@@ -349,10 +349,19 @@
                                             </div>
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
+                                                    <label>Supporter</label>
+                                                    <select>
+                                                        <option value="${wc.supporter_id}">${wc.supporter_id}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6">
+                                                <div class="form-group">
                                                     <label>Type</label>
                                                     <input type="text" class="form-control" value="${wc.category_id}" disabled>
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-sm-6">
                                                 <div class="form-group">
                                                     <label>Email</label>
@@ -371,15 +380,15 @@
                                                     <input type="text" class="form-control" value="${wc.message}" disabled>
                                                 </div>
                                             </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label>Response</label>
-                                                        <input type="text" class="form-control" value="${wc.response}" name="response" >
-                                                    </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label>Response</label>
+                                                    <input type="text" class="form-control" value="${wc.response}" name="response" >
                                                 </div>
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

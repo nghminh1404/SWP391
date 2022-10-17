@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Model.*;
+import java.util.HashMap;
 
 /**
  *
@@ -105,6 +106,18 @@ public class WebContactDAO extends DBContext{
             ps.execute();
         } catch (Exception e) {
         }
+    }
+    
+    public HashMap<Integer, String> getCategoriesHashMap(){
+        String sql = "SELECT * FROM ";
+        HashMap<Integer, String> hashMap = new HashMap<>();
+        return hashMap;
+    }
+    
+    public HashMap<Integer, String> getSupporterHashMap(){
+        String sql = "SELECT * FROM";
+        HashMap<Integer, String> hashMap = new HashMap<>();
+        return hashMap;
     }
     
 }

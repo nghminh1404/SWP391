@@ -74,10 +74,9 @@ public class RegisterDAO extends DBContext {
 
     public static void main(String[] args) throws Exception {
         RegisterDAO myConnect = new RegisterDAO();
-        List<User> list = myConnect.getAll();
-        for (User user : list) {
-            System.out.println(user.getEmail());
-        }
+//        myConnect.insertUser("Nguyễn Thị Loan", "loanht35@gmail.com", "0123456789", "loan123", true);
+//        myConnect.insertUser("Nguyễn Văn Mạnh", "manhvnvjppro@gmail.com", "0363016214", "manh123", true);
+//        myConnect.insertUser("Hoàng Kim Nam", "namhehehe123@gmail.com", "02413791030", "nam123", true);
     }
 
 }
