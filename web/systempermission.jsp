@@ -21,14 +21,111 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <style>
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1002;
+            left: 50%;
+            top: 30px;
+            font-size: 17px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                top: 0;
+                opacity: 0;
+            }
+            to {
+                top: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                top: 0;
+                opacity: 0;
+            }
+            to {
+                top: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                top: 30px;
+                opacity: 1;
+            }
+            to {
+                top: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                top: 30px;
+                opacity: 1;
+            }
+            to {
+                top: 0;
+                opacity: 0;
+            }
+        }
         th{
             cursor: pointer;
         }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .up {
+            transform: rotate(-135deg);
+            -webkit-transform: rotate(-135deg);
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        
     </style>
-    <body>
-
+    <body onload="myFunction()">
         <div class="main-wrapper">
-
+            
+            <input type="number" name="update" value="${update}" hidden>
+            <c:if test="${update == 1}">
+                <div id="snackbar">Update Successfully!!!</div>
+            </c:if>
             <div class="header">
 
                 <div class="header-left">
@@ -226,7 +323,7 @@
                                 <a href="fees.html"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
                             </li>
                             <li class="active">
-                                <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>System Permission</span></a>
+                                <a href="/SWP/systempermission"><i class="fas fa-clipboard-list"></i> <span>System Permission</span></a>
                             </li>
                             <li>
                                 <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
@@ -350,7 +447,7 @@
                                                     <c:if test="${screen != s.key}">
                                                         <option value="${s.key}">${s.value}</option>
                                                     </c:if>
-                                                        
+
                                                     <c:if test="${screen == s.key}">
                                                         <option value="${s.key}" selected>${s.value}</option>
                                                     </c:if>
@@ -366,8 +463,8 @@
                                         <table id="myTable" class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th onclick="sortTable(0)">Role</th>
-                                                    <th onclick="sortTable(1)">Screen</th>
+                                                    <th onclick="sortTable(0)"><i class="arrow down" style="float: right"></i>Role</th>
+                                                    <th onclick="sortTable(1)"><i class="arrow down" style="float: right"></i>Screen</th>
                                                     <th>Can Get Data</th>
                                                     <th>Can Add</th>
                                                     <th>Can Delete</th>
@@ -475,60 +572,73 @@
 
         <script src="assets/js/script.js"></script>
         <script>
-                                                        function sortTable(n) {
-                                                            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-                                                            table = document.getElementById("myTable");
-                                                            switching = true;
-                                                            //Set the sorting direction to ascending:
-                                                            dir = "asc";
-                                                            /*Make a loop that will continue until
-                                                             no switching has been done:*/
-                                                            while (switching) {
-                                                                //start by saying: no switching is done:
-                                                                switching = false;
-                                                                rows = table.rows;
-                                                                /*Loop through all table rows (except the
-                                                                 first, which contains table headers):*/
-                                                                for (i = 1; i < (rows.length - 1); i++) {
-                                                                    //start by saying there should be no switching:
-                                                                    shouldSwitch = false;
-                                                                    /*Get the two elements you want to compare,
-                                                                     one from current row and one from the next:*/
-                                                                    x = rows[i].getElementsByTagName("TD")[n];
-                                                                    y = rows[i + 1].getElementsByTagName("TD")[n];
-                                                                    /*check if the two rows should switch place,
-                                                                     based on the direction, asc or desc:*/
-                                                                    if (dir === "asc") {
-                                                                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                                                                            //if so, mark as a switch and break the loop:
-                                                                            shouldSwitch = true;
-                                                                            break;
-                                                                        }
-                                                                    } else if (dir === "desc") {
-                                                                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                                                                            //if so, mark as a switch and break the loop:
-                                                                            shouldSwitch = true;
-                                                                            break;
-                                                                        }
-                                                                    }
-                                                                }
-                                                                if (shouldSwitch) {
-                                                                    /*If a switch has been marked, make the switch
-                                                                     and mark that a switch has been done:*/
-                                                                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                                                                    switching = true;
-                                                                    //Each time a switch is done, increase this count by 1:
-                                                                    switchcount++;
-                                                                } else {
-                                                                    /*If no switching has been done AND the direction is "asc",
-                                                                     set the direction to "desc" and run the while loop again.*/
-                                                                    if (switchcount === 0 && dir === "asc") {
-                                                                        dir = "desc";
-                                                                        switching = true;
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
+            function sortTable(n) {
+                var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                table = document.getElementById("myTable");
+                switching = true;
+                //Set the sorting direction to ascending:
+                dir = "asc";
+                /*Make a loop that will continue until
+                 no switching has been done:*/
+                while (switching) {
+                    //start by saying: no switching is done:
+                    switching = false;
+                    rows = table.rows;
+                    /*Loop through all table rows (except the
+                     first, which contains table headers):*/
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        //start by saying there should be no switching:
+                        shouldSwitch = false;
+                        /*Get the two elements you want to compare,
+                         one from current row and one from the next:*/
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                        /*check if the two rows should switch place,
+                         based on the direction, asc or desc:*/
+                        var element = document.getElementsByClassName("arrow")[n];
+                        if (dir === "asc") {
+                            element.classList.remove("up");
+                            element.classList.add("down");
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                //if so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir === "desc") {
+                            element.classList.remove("down");
+                            element.classList.add("up");
+
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                //if so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        /*If a switch has been marked, make the switch
+                         and mark that a switch has been done:*/
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        //Each time a switch is done, increase this count by 1:
+                        switchcount++;
+                    } else {
+                        /*If no switching has been done AND the direction is "asc",
+                         set the direction to "desc" and run the while loop again.*/
+                        if (switchcount === 0 && dir === "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                    }
+                }
+            }
+            
+function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
         </script>
     </body>
 

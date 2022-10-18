@@ -8,7 +8,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -72,6 +71,7 @@ public class SystemPermissionController extends HttpServlet {
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
+        
 
         int end_page = spdao.getAmount() % 10 == 0 ? spdao.getAmount() / 10 : spdao.getAmount() / 10 + 1;
         request.setAttribute("end_page", end_page);
@@ -101,6 +101,7 @@ public class SystemPermissionController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         SystemPermissionDAO spdao = new SystemPermissionDAO();
+        int update = 0;
         if (request.getParameter("screen_id") != null) {
             int screen_id = Integer.parseInt(request.getParameter("screen_id"));
             int setting_id = Integer.parseInt(request.getParameter("setting_id"));
@@ -112,8 +113,10 @@ public class SystemPermissionController extends HttpServlet {
             } else {
                 spdao.updatePermission(screen_id, setting_id, col, 0);
             }
+            update = 1;
         }
         
+        request.setAttribute("update", update);
         int role = 0;
         int screen = 0;
         String input_search = "";
@@ -132,6 +135,7 @@ public class SystemPermissionController extends HttpServlet {
         request.setAttribute("role", role);
         request.setAttribute("screen", screen);
         request.setAttribute("input_search", input_search);
+        
 
         doGet(request, response);
     }

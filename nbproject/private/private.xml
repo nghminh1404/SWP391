@@ -5,7 +5,9 @@
         <group>
             <file>file:/C:/Users/dan2k/g4-2/web/systempermission.jsp</file>
             <file>file:/C:/Users/dan2k/g4-2/src/java/dal/SystemPermissionDAO.java</file>
+            <file>file:/C:/Users/dan2k/g4-2/src/java/Controller/ChangePassword.java</file>
             <file>file:/C:/Users/dan2k/g4-2/src/java/Controller/SystemPermissionController.java</file>
+            <file>file:/C:/Users/dan2k/g4-2/web/change_password.jsp</file>
         </group>
     </open-files>
 </project-private>
