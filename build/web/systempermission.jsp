@@ -357,7 +357,7 @@
                                                 </c:forEach>
                                             </select>
                                             <div class="top-nav-search">
-                                                <input id="myInput" style="color: black" type="search" class="form-control" placeholder="Search here">
+                                                <input id="myInput" style="color: black" type="search" class="form-control" placeholder="Search here" name="input_search" value="${input_search}">
                                             </div>
                                             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                                         </div>

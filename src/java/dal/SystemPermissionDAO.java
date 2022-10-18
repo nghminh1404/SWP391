@@ -41,17 +41,25 @@ public class SystemPermissionDAO extends DBContext {
         return 0;
     }
 
-    public List<SystemPermission> getAll(int limit, int offset, int role_id, int screen_id) {
+    public List<SystemPermission> getAll(int limit, int offset, int role_id, int screen_id, String input_search) {
         String sql = "";
+        if (input_search.equals("")) {
+            input_search = "%%";
+        } else {
+            input_search = "%" + input_search  +"%";
+        }
         List<SystemPermission> list = new ArrayList<>();
         if (role_id == 0 && screen_id == 0) {
             sql = "SELECT distinct(ul.setting_id), s1.setting_title, s.setting_title, s.setting_value, p.*\n"
                     + "FROM setting s join `permission` p on s.setting_id = p.screen_id join user_role ul on p.setting_id = ul.setting_id join setting s1 on p.setting_id = s1.setting_id\n"
+                    + "WHERE s1.setting_title like ? OR s.setting_title like ?\n"
                     + "ORDER BY s1.setting_title limit ? offset ?";
             try {
                 PreparedStatement ps = con.prepareStatement(sql);
-                ps.setInt(1, limit);
-                ps.setInt(2, offset);
+                ps.setString(1, input_search);
+                ps.setString(2, input_search);
+                ps.setInt(3, limit);
+                ps.setInt(4, offset);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     list.add(new SystemPermission(rs.getString(2), rs.getInt(5), rs.getString(3), rs.getInt(1), rs.getBoolean(7), rs.getBoolean(8), rs.getBoolean(9), rs.getBoolean(10)));
@@ -61,13 +69,15 @@ public class SystemPermissionDAO extends DBContext {
         } else if (role_id != 0 && screen_id == 0) {
             sql = "SELECT distinct(ul.setting_id), s1.setting_title, s.setting_title, s.setting_value, p.*\n"
                     + "FROM setting s join `permission` p on s.setting_id = p.screen_id join user_role ul on p.setting_id = ul.setting_id join setting s1 on p.setting_id = s1.setting_id\n"
-                    + "where p.setting_id = ?\n"
+                    + "where p.setting_id = ? and (s1.setting_title like ? OR s.setting_title like ?)\n"
                     + "ORDER BY s1.setting_title limit ? offset ?";
             try {
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setInt(1, role_id);
-                ps.setInt(2, limit);
-                ps.setInt(3, offset);
+                ps.setString(2, input_search);
+                ps.setString(3, input_search);
+                ps.setInt(4, limit);
+                ps.setInt(5, offset);
 
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -78,13 +88,15 @@ public class SystemPermissionDAO extends DBContext {
         } else if (role_id == 0 && screen_id != 0) {
             sql = "SELECT distinct(ul.setting_id), s1.setting_title, s.setting_title, s.setting_value, p.*\n"
                     + "FROM setting s join `permission` p on s.setting_id = p.screen_id join user_role ul on p.setting_id = ul.setting_id join setting s1 on p.setting_id = s1.setting_id\n"
-                    + "where p.screen_id = ?\n"
+                    + "where p.screen_id = ? and (s1.setting_title like ? OR s.setting_title like ?)\n"
                     + "ORDER BY s1.setting_title limit ? offset ?";
             try {
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setInt(1, screen_id);
-                ps.setInt(2, limit);
-                ps.setInt(3, offset);
+                ps.setString(2, input_search);
+                ps.setString(3, input_search);
+                ps.setInt(4, limit);
+                ps.setInt(5, offset);
 
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -95,14 +107,16 @@ public class SystemPermissionDAO extends DBContext {
         } else {
             sql = "SELECT distinct(ul.setting_id), s1.setting_title, s.setting_title, s.setting_value, p.*\n"
                     + "FROM setting s join `permission` p on s.setting_id = p.screen_id join user_role ul on p.setting_id = ul.setting_id join setting s1 on p.setting_id = s1.setting_id\n"
-                    + "where p.setting_id = ? AND p.screen_id = ?\n"
+                    + "where p.setting_id = ? AND p.screen_id = ? AND (s1.setting_title like ? OR s.setting_title like ?)\n"
                     + "ORDER BY s1.setting_title limit ? offset ?";
             try {
                 PreparedStatement ps = con.prepareStatement(sql);
                 ps.setInt(1, role_id);
                 ps.setInt(2, screen_id);
-                ps.setInt(3, limit);
-                ps.setInt(4, offset);
+                ps.setString(3, input_search);
+                ps.setString(4, input_search);
+                ps.setInt(5, limit);
+                ps.setInt(6, offset);
 
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -157,5 +171,9 @@ public class SystemPermissionDAO extends DBContext {
 
     public static void main(String[] args) {
         SystemPermissionDAO spdao = new SystemPermissionDAO();
+        List<SystemPermission> permissionList = spdao.getAll(10, 0, 0, 0, "");
+        for (SystemPermission systemPermission : permissionList) {
+            System.out.println(systemPermission.getScreen_id());
+        }
     }
 }

@@ -59,11 +59,15 @@ public class SystemPermissionController extends HttpServlet {
         int page = 1;
         int role_id = 0;
         int screen_id = 0;
+        String input_search = "";
         if (request.getParameter("role") != null) {
             role_id = Integer.parseInt(request.getParameter("role"));
         }
         if (request.getParameter("screen") != null) {
             screen_id = Integer.parseInt(request.getParameter("screen"));
+        }
+        if (request.getParameter("input_search") != null) {
+            input_search = request.getParameter("input_search");
         }
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
@@ -72,11 +76,11 @@ public class SystemPermissionController extends HttpServlet {
         int end_page = spdao.getAmount() % 10 == 0 ? spdao.getAmount() / 10 : spdao.getAmount() / 10 + 1;
         request.setAttribute("end_page", end_page);
         if (page <= end_page) {
-            List<SystemPermission> permissionList = spdao.getAll(10, (page - 1) * 10, role_id, screen_id);
+            List<SystemPermission> permissionList = spdao.getAll(10, (page - 1) * 10, role_id, screen_id, input_search);
             request.setAttribute("permissionList", permissionList);
             request.setAttribute("page", page);
         } else {
-            List<SystemPermission> permissionList = spdao.getAll(10, 0, role_id, screen_id);
+            List<SystemPermission> permissionList = spdao.getAll(10, 0, role_id, screen_id, input_search);
             request.setAttribute("permissionList", permissionList);
             request.setAttribute("page", 1);
         }
@@ -112,6 +116,7 @@ public class SystemPermissionController extends HttpServlet {
         
         int role = 0;
         int screen = 0;
+        String input_search = "";
         if (request.getParameter("role") != null) {
             role = Integer.parseInt(request.getParameter("role"));
         }
@@ -120,8 +125,13 @@ public class SystemPermissionController extends HttpServlet {
             screen = Integer.parseInt(request.getParameter("screen"));
         }
         
+        if (request.getParameter("input_search") != null) {
+            input_search = request.getParameter("input_search");
+        }
+        
         request.setAttribute("role", role);
         request.setAttribute("screen", screen);
+        request.setAttribute("input_search", input_search);
 
         doGet(request, response);
     }
