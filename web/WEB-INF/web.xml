@@ -33,14 +33,6 @@
         <servlet-class>Controller.WebContactInfoController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ClassSettingController</servlet-name>
-        <servlet-class>Controller.ClassSettingController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ClassSettingDelete</servlet-name>
-        <servlet-class>Controller.ClassSettingDelete</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>MilestoneController</servlet-name>
         <servlet-class>Controller.MilestoneController</servlet-class>
     </servlet>
@@ -51,6 +43,10 @@
     <servlet>
         <servlet-name>ScheduleDetailController</servlet-name>
         <servlet-class>Controller.ScheduleDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ClassSettingController</servlet-name>
+        <servlet-class>Controller.ClassSettingController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
@@ -85,14 +81,6 @@
         <url-pattern>/web_contact_info</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ClassSettingController</servlet-name>
-        <url-pattern>/classsetting</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ClassSettingDelete</servlet-name>
-        <url-pattern>/classsettingdelete</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>MilestoneController</servlet-name>
         <url-pattern>/milestone</url-pattern>
     </servlet-mapping>
@@ -103,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>ScheduleDetailController</servlet-name>
         <url-pattern>/scheduledetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClassSettingController</servlet-name>
+        <url-pattern>/classsetting</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
