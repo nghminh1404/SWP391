@@ -58,9 +58,10 @@ public class ScheduleDetailController extends HttpServlet {
                 String id = request.getParameter("sid");
                 int delete = 0;
                 cs.DeleteSchedule(Integer.parseInt(id));
+                System.out.println(id);
                 delete = 1;
                 request.setAttribute("delete", delete);
-                request.getRequestDispatcher("Schedule.jsp").forward(request, response);
+                request.getRequestDispatcher("schedule").forward(request, response);
                 break;
 
             default:

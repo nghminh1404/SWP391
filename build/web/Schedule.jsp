@@ -14,7 +14,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Preskool - Class Setting</title>
+        <title>Preskool - Schedule</title>
 
         <link rel="shortcut icon" href="assets/img/favicon.png">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
@@ -164,14 +164,13 @@
                                             <input type="radio" name="status" value="active">  Active
                                             <input type="radio" name="status" value="deactive">  Deactive
                                             <input type="radio" name="status" value="both" checked>  Both
-                                            <br/>
-                                            <input name ="title" type="search" placeholder="Title">
+                                            <br/>                                            
                                             <input type="submit" value="Search" style="float: right; background-color: #FFBC53; border: 1px solid #FFBC53; color: white; padding: 10px; transform: translateY(-50%);" />
                                         </form>
                                     </div>
 
                                     <div class="table-responsive">                                     
-                                        <table class="table table-hover table-center mb-0">
+                                        <table class="table table-hover table-center mb-0 datatable">
                                             <thead>
                                                 <tr>                                                    
                                                     <th>Class<a href=""><i class="fa-solid fa-arrow-up-long"></i><i class="fa-solid fa-arrow-down-long"></i></a></th>

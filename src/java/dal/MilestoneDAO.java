@@ -52,7 +52,7 @@ public class MilestoneDAO {
     public List<Milestone> getMilestonelistByUserID(int user_id, int limit, int curPage) {
         List<Milestone> list = new ArrayList<>();
         int offset = (curPage - 1) * limit;
-        String query = "select * from milestone where class_id in (select class_id from class_user where user_user_id=?) limit ? offset ?;";
+        String query = "select * from milestone where class_id in (select class_id from class where trainer_id=?) limit ? offset ?;";
         try {
             con = new DBContext().connection;
             ps = con.prepareStatement(query);
@@ -134,10 +134,10 @@ public class MilestoneDAO {
 
     public static void main(String[] args) {
         MilestoneDAO m = new MilestoneDAO();
-//        List<Milestone> list = m.getMilestonelist(10, 1);
-//        for (Milestone item : list) {
-//            System.out.println(item.getMilestone_id());
-//        }
+        List<Milestone> list = m.getMilestonelistByUserID(5, 10, 1);
+        for (Milestone item : list) {
+            System.out.println(item.getMilestone_id());
+        }
 
     }
 }

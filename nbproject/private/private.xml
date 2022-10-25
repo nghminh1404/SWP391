@@ -4,11 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/src/java/Controller/ScheduleDetailController.java</file>
-            <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/src/java/dal/MilestoneDAO.java</file>
-            <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/src/java/dal/ScheduleDAO.java</file>
+            <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/src/java/Model/ClassModel.java</file>
             <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/web/Schedule.jsp</file>
-            <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/src/java/Model/Schedule.java</file>
-            <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/src/java/Controller/ScheduleController.java</file>
+            <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/src/java/dal/ScheduleDAO.java</file>
+            <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/src/java/Controller/ClassSettingController.java</file>
             <file>file:/E:/LearningSpace/JavaWeb/Clone/g4/web/ScheduleDetail.jsp</file>
         </group>
     </open-files>

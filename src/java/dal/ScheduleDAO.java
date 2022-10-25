@@ -134,7 +134,7 @@ public class ScheduleDAO {
         } else {
             status = "%%";
         }        
-        query = "SELECT * FROM schedule  WHERE class_id like '" + classmodel + "' and status like '" + status + "'";
+        query = "SELECT * FROM schedule WHERE class_id like ? and status like ?";
         System.out.println(query);
         try {
             con = new DBContext().connection;

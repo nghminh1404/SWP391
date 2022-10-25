@@ -111,7 +111,7 @@
                             <div class="col">
                                 <h3 class="page-title">Schedule Detail</h3>
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="schedule">Class Setting</a></li>
+                                    <li class="breadcrumb-item"><a href="schedule">Schedule</a></li>
                                     <li class="breadcrumb-item active">Schedule Detail</li>
                                 </ul>
                             </div>

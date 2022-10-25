@@ -50,7 +50,7 @@ public class ClassSettingDAO {
     public List<ClassSetting> getClassSettinglistByUserID(int user_id, int limit, int curPage) {
         List<ClassSetting> list = new ArrayList<>();
         int offset = (curPage - 1) * limit;
-        String query = "select * from class_setting where class_id in (select class_id from class_user where user_user_id=?) limit ? offset ?;";
+        String query = "select * from class_setting where class_id in (select class_id from class where trainer_id=?) limit ? offset ?;";
         try {
             con = new DBContext().connection;
             ps = con.prepareStatement(query);
@@ -202,13 +202,14 @@ public class ClassSettingDAO {
 //        cs.UpdateClassSetting(2, 3, "van vay a", "okioki", "ko order ha", true, "love u chu ca mo", 2);
 //        cs.DeleteClassSetting(24);
 //        System.out.println(cs.getSettingbyid("2").getSetting_tiltle());
-//        List<ClassSetting> list = cs.getClassSettinglist(1, 10, 1);
-//        for (ClassSetting item : list) {
-//            System.out.println(item.getSetting_id());
-//        }
-//
-//        int page = (int) 15 / 10 + (15 % 10 == 0 ? 0 : 1);
-//
-//        System.out.println(page);
+        
+        List<ClassSetting> list = cs.getClassSettinglistByUserID(5, 10, 1);
+        for (ClassSetting item : list) {
+            System.out.println(item.getSetting_id());
+        }
+
+        int page = (int) 15 / 10 + (15 % 10 == 0 ? 0 : 1);
+
+        System.out.println(page);
     }
 }
