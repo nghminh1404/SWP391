@@ -5,23 +5,20 @@
 
 package Controller;
 
-import dal.Dao;
+import Model.Classes;
+import dal.ClassDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import Model.User;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author Hp
+ * @author PC
  */
-public class EditPersionalInfoController extends HttpServlet {
+public class ClassDetailServelet extends BaseRequiredAuthenticationController {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,7 +26,23 @@ public class EditPersionalInfoController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */    
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ClassDetailServelet</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ClassDetailServelet at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -39,10 +52,13 @@ public class EditPersionalInfoController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("editprofile.jsp").forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        ClassDBContext cdb = new ClassDBContext();
+        Classes c = cdb.get(id);
+        request.setAttribute("classes", c);
+        request.getRequestDispatcher("view/user/ClassDetail.jsp").forward(request, response);
     } 
 
     /** 
@@ -52,23 +68,9 @@ public class EditPersionalInfoController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String name = request.getParameter("name");        
-        String mobile = request.getParameter("mobile");
-        Dao u = new Dao();
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-         try {
-              u.UpdatePesonalInfo(user.getUser_id(), name, mobile);
-         } catch (Exception ex) {
-              Logger.getLogger(EditPersionalInfoController.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        user = u.login(user.getEmail(), user.getPassword());
-        session.setAttribute("user", user);
-//        request.getRequestDispatcher("profile").forward(request, response);
-        response.sendRedirect("profile");
+        processRequest(request, response);
     }
 
     /** 

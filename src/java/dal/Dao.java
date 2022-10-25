@@ -37,6 +37,7 @@ public class Dao extends DBContext {
                rs = ps.executeQuery();
                if (rs.next()) {
                     User user = new User();
+                    user.setUser_id(rs.getInt("user_id"));
                     user.setFull_name(rs.getString("full_name"));
                     user.setEmail(rs.getString("email"));
                     user.setMobile(rs.getString("mobile"));
