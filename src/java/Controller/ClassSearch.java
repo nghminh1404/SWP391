@@ -5,23 +5,27 @@
 
 package Controller;
 
-import dal.Dao;
+import Model.Classes;
+import Model.User;
+import dal.ClassDBContext;
+import dal.SettingDBContext;
+import dal.SubjectDBContext;
+import dal.UserDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import Model.User;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  *
- * @author Hp
+ * @author PC
  */
-public class EditPersionalInfoController extends HttpServlet {
+@WebServlet(name="ClassSearch", urlPatterns={"/classsearch"})
+public class ClassSearch extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,7 +33,25 @@ public class EditPersionalInfoController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     */    
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        String keyword = request.getParameter("keyword");
+        SettingDBContext dbSett = new SettingDBContext();
+          UserDBContext dbUser = new UserDBContext();
+          ArrayList<User> trainer = dbUser.getTrainer();
+          request.setAttribute("trainers", trainer);
+          SubjectDBContext dbSub = new SubjectDBContext();  
+          request.setAttribute("settings", dbSett.listTerm());
+          request.setAttribute("subjects", dbSub.list());
+          UserDBContext dbSUser = new UserDBContext();
+          ArrayList<User> supporter = dbSUser.getSupporter();
+          request.setAttribute("supporters", supporter);
+          ClassDBContext cdb = new ClassDBContext();
+          ArrayList<Classes> classes = cdb.search(keyword);
+          request.setAttribute("classes", classes);
+          request.getRequestDispatcher("view/user/ClassList.jsp").forward(request, response);
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -42,7 +64,13 @@ public class EditPersionalInfoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("editprofile.jsp").forward(request, response);
+                String keyword = request.getParameter("keyword");
+        SettingDBContext dbSetting = new SettingDBContext();
+        UserDBContext dbUser = new UserDBContext(); 
+        request.setAttribute("settings", dbSetting.list());
+        ArrayList<User> users = dbUser.search(keyword);
+        request.setAttribute("users", users);
+        request.getRequestDispatcher("view/user/UserList.jsp").forward(request, response);
     } 
 
     /** 
@@ -55,20 +83,7 @@ public class EditPersionalInfoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String name = request.getParameter("name");        
-        String mobile = request.getParameter("mobile");
-        Dao u = new Dao();
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-         try {
-              u.UpdatePesonalInfo(user.getUser_id(), name, mobile);
-         } catch (Exception ex) {
-              Logger.getLogger(EditPersionalInfoController.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        user = u.login(user.getEmail(), user.getPassword());
-        session.setAttribute("user", user);
-//        request.getRequestDispatcher("profile").forward(request, response);
-        response.sendRedirect("profile");
+        processRequest(request, response);
     }
 
     /** 

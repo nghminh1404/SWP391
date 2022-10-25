@@ -18,6 +18,8 @@ import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,7 +49,11 @@ public class ChangeAvatarController extends HttpServlet {
         Dao d = new Dao();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        d.UpdateAvatarURL(user.getUser_id(), fileName);
+         try {
+              d.UpdateAvatarURL(user.getUser_id(), fileName);
+         } catch (Exception ex) {
+              Logger.getLogger(ChangeAvatarController.class.getName()).log(Level.SEVERE, null, ex);
+         }
         System.out.println(fileName);
         user = d.login(user.getEmail(), user.getPassword());
         session.setAttribute("user", user);

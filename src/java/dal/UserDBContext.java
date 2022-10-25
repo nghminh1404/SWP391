@@ -26,7 +26,7 @@ public class UserDBContext extends ADBContext<User> {
           try {
                String sql = "Select u.user_id,u.full_name,u.email,u.mobile,u.avatar_url,s.setting_title,u.status,u.note"
                        + " from user u left join user_role ur ON u.user_id = ur.user_id\n"
-                       + "left join setting s ON ur.setting_id = s.setting_id where u.user_id = ?;";
+                       + "left join setting s ON ur.setting_id = s.setting_id where u.user_id = ?";
                PreparedStatement stm = connection.prepareStatement(sql);
                stm.setInt(1, id);
                ResultSet rs = stm.executeQuery();
@@ -167,9 +167,9 @@ public class UserDBContext extends ADBContext<User> {
                        + "from user u inner join user_role ur ON u.user_id = ur.user_id\n"
                        + "inner join setting s ON ur.setting_id = s.setting_id where u.full_name like ? or u.email like ? or u.mobile like ?";
                PreparedStatement stm = connection.prepareStatement(sql);
-               stm.setString(1,"%"+ keyword +"%");
-               stm.setString(2,"%"+ keyword +"%");
-               stm.setString(3, "%"+ keyword +"%");
+               stm.setString(1, "%" + keyword + "%");
+               stm.setString(2, "%" + keyword + "%");
+               stm.setString(3, "%" + keyword + "%");
                ResultSet rs = stm.executeQuery();
                while (rs.next()) {
                     User u = new User();
@@ -181,6 +181,48 @@ public class UserDBContext extends ADBContext<User> {
                     Setting s = new Setting();
                     s.setSetting_title(rs.getString("setting_title"));
                     u.setSetting(s);
+                    users.add(u);
+               }
+          } catch (SQLException ex) {
+               Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          return users;
+     }
+
+     public ArrayList<User> getTrainer() {
+          ArrayList<User> users = new ArrayList<>();
+          try {
+               String sql = "Select u.user_id,u.full_name,u.status \n"
+                       + "from user u Inner join user_role ur ON u.user_id = ur.user_id\n"
+                       + "                       Inner join setting s ON ur.setting_id = s.setting_id\n"
+                       + "					where s.setting_id = '13' ";
+               PreparedStatement stm = connection.prepareStatement(sql);
+               ResultSet rs = stm.executeQuery();
+               while (rs.next()) {
+                    User u = new User();
+                    u.setUser_id(rs.getInt("user_id"));
+                    u.setFull_name(rs.getString("full_name"));
+                    users.add(u);
+               }
+          } catch (SQLException ex) {
+               Logger.getLogger(UserDBContext.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          return users;
+     }
+
+     public ArrayList<User> getSupporter() {
+          ArrayList<User> users = new ArrayList<>();
+          try {
+               String sql = "Select u.user_id,u.full_name,u.status \n"
+                       + "from user u Inner join user_role ur ON u.user_id = ur.user_id\n"
+                       + "                       Inner join setting s ON ur.setting_id = s.setting_id\n"
+                       + "					where s.setting_id = '14' ";
+               PreparedStatement stm = connection.prepareStatement(sql);
+               ResultSet rs = stm.executeQuery();
+               while (rs.next()) {
+                    User u = new User();
+                    u.setUser_id(rs.getInt("user_id"));
+                    u.setFull_name(rs.getString("full_name"));
                     users.add(u);
                }
           } catch (SQLException ex) {

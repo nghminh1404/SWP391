@@ -4,73 +4,58 @@
  */
 package dal;
 
+import Model.Setting;
+import Model.Subject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Model.Setting;
 
 /**
  *
  * @author PC
  */
-public class SettingDBContext extends ADBContext<Setting> {
+public class SubjectDBContext extends ADBContext<Subject> {
 
-     public ArrayList<Setting> listTerm(){
-     ArrayList<Setting> settings = new ArrayList<>();
+     @Override
+     public ArrayList<Subject> list() {
+          ArrayList<Subject> subjects = new ArrayList<>();
           try {
-               String sql = "SELECT setting_id,setting_title FROM swp.setting where setting_id >= 19 AND setting_id <= 22;";
+               String sql = "SELECT subject_id,subject_code,subject_name FROM swp.subject";
                PreparedStatement stm = connection.prepareStatement(sql);
                ResultSet rs = stm.executeQuery();
                while (rs.next()) {
-                    Setting s = new Setting();
-                    s.setSetting_id(rs.getInt("setting_id"));
-                    s.setSetting_title(rs.getString("setting_title"));
-                    settings.add(s);
+                    Subject s = new Subject();
+                    s.setSubject_id(rs.getInt("subject_id"));
+                    s.setSubject_code(rs.getString("subject_code"));
+                    s.setSubject_name(rs.getString("subject_name"));
+                    subjects.add(s);
                }
           } catch (SQLException ex) {
                Logger.getLogger(SettingDBContext.class.getName()).log(Level.SEVERE, null, ex);
           }
-          return settings;
-     }
-     @Override
-     public ArrayList<Setting> list() {
-          ArrayList<Setting> settings = new ArrayList<>();
-          try {
-               String sql = "SELECT setting_id,setting_title FROM swp.setting where setting_id > 10 AND setting_id <= 17;";
-               PreparedStatement stm = connection.prepareStatement(sql);
-               ResultSet rs = stm.executeQuery();
-               while (rs.next()) {
-                    Setting s = new Setting();
-                    s.setSetting_id(rs.getInt("setting_id"));
-                    s.setSetting_title(rs.getString("setting_title"));
-                    settings.add(s);
-               }
-          } catch (SQLException ex) {
-               Logger.getLogger(SettingDBContext.class.getName()).log(Level.SEVERE, null, ex);
-          }
-          return settings;
+          return subjects;
      }
 
      @Override
-     public Setting get(int id) {
+     public Subject get(int id) {
           throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
      }
 
      @Override
-     public void insert(Setting model) {
+     public void insert(Subject model) {
           throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
      }
 
      @Override
-     public void update(Setting model) {
+     public void update(Subject model) {
           throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
      }
 
      @Override
-     public void delete(Setting model) {
+     public void delete(Subject model) {
           throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
      }
 
