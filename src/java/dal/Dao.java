@@ -6,14 +6,17 @@ package dal;
 
 import Model.Setting;
 import Model.User;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -150,12 +153,28 @@ public class Dao extends DBContext {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Dao dao = new Dao();
 //        Setting u = dao.getSettingbyid("2");
-//        User u = dao.login("anhnapu@mail.com", "Kkkkk1312");
+        User u = dao.login("anhnapu@mail.com", "Kkkkk1312");
+        System.out.println(u.getUser_id());
+        // File (or directory) with old name
+//        File file = new File("E:\\LearningSpace\\JavaWeb\\Clone\\g4\\build\\web\\" + u.getAvatar_url());
+
+//        Path source = Paths.get("E:\\LearningSpace\\JavaWeb\\Clone\\g4\\build\\web\\" + u.getAvatar_url());
+//
+//        try {
+//
+//            // rename a file in the same directory
+//            Files.move(source, source.resolveSibling("newName.jpg"));
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+//        System.out.println("Deletion successful.");
+//        Files.deleteIfExists(Paths.get(u.getAvatar_url()));
 //        System.out.println(u);
 //        dao.insertContact("anh", "anh@mail.com", "085", "lalal");
-
     }
 }

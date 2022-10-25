@@ -17,7 +17,9 @@ import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.Part;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -82,6 +84,16 @@ public class EditProfileController extends HttpServlet {
                 Part image = request.getPart("avatar");
                 String imageFilename = Paths.get(image.getSubmittedFileName()).getFileName().toString();
                 image.write(Paths.get(uploadPath.toString(), imageFilename).toString());
+                try {
+                    Files.deleteIfExists(Paths.get("E:\\LearningSpace\\JavaWeb\\Clone\\g4\\build\\web\\" + user.getAvatar_url()));
+                } catch (NoSuchFileException e) {
+                    System.out.println("No such file/directory exists");
+                } catch (DirectoryNotEmptyException e) {
+                    System.out.println("Directory is not empty.");
+                } catch (IOException e) {
+                    System.out.println("Invalid permissions.");
+                }
+
                 u.UpdateAvatarURL(user.getUser_id(), "assets/img/upload/" + imageFilename);
 
                 break;
@@ -92,7 +104,7 @@ public class EditProfileController extends HttpServlet {
                 if (!mobile.matches("^(84|0[3|5|7|8|9])+([0-9]{8})$")) {
                     request.setAttribute("error", "Please enter a phone number in VN!");
                     doGet(request, response);
-                }                
+                }
                 u.UpdatePesonalInfo(user.getUser_id(), name, mobile);
                 break;
             default:
