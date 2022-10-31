@@ -117,10 +117,10 @@
     </head>
     <body onload="myFunction()">        
         <c:if test="${delete == 1}">
-            <div id="snackbar">Delete Successfully!!!</div>
+            <div id="snackbar1">Delete Successfully!!!</div>
         </c:if>        
         <c:if test="${insert == 1}">
-            <div id="snackbar">Insert Successfully!!!</div>
+            <div id="snackbar2">Insert Successfully!!!</div>
         </c:if>
 
         <div class="main-wrapper">
@@ -152,20 +152,25 @@
                             <div class="card card-table">
                                 <div class="card-body">
                                     <div style="background-color: #f7f7f7; padding: 25px; margin-bottom: 10px;">
-                                        <form action="schedule" method="post">
-                                            Class:<select name="classmodel">
-                                                <option value="All">All</option>    
-                                                <c:forEach items="${classlist}" var="c">
-                                                    <option value="${c.class_id}">${c.class_code}</option>
-                                                </c:forEach>                                            
-                                            </select>       
-                                            <br/>
-                                            Status: 
-                                            <input type="radio" name="status" value="active">  Active
-                                            <input type="radio" name="status" value="deactive">  Deactive
-                                            <input type="radio" name="status" value="both" checked>  Both
+                                        <form action="schedule" method="post" class="row">
+                                            <div class="col-sm-5" style="margin-right: 0;">
+                                                Class:<select name="classmodel" style="width: 100%;">
+                                                    <option value="All">All</option>    
+                                                    <c:forEach items="${classlist}" var="c">
+                                                        <option value="${c.class_id}">${c.class_code}</option>
+                                                    </c:forEach>                                            
+                                                </select>  
+                                            </div>              
+                                            <div class="col-sm-5">
+                                                Status: <select name = "status" style="width: 100%;">
+                                                    <option value="All">All</option>
+                                                    <option value="ongoing">Ongoing</option>
+                                                    <option value="closed">Closed</option>                                                
+                                                </select>                                            
+                                            </div>
+
                                             <br/>                                            
-                                            <input type="submit" value="Search" style="float: right; background-color: #FFBC53; border: 1px solid #FFBC53; color: white; padding: 10px; transform: translateY(-50%);" />
+                                            <input class="col-sm-2" type="submit" value="Filter" style="background-color: #FFBC53; border: 1px solid #FFBC53; color: white; padding: 10px; height: 27 !important;" />
                                         </form>
                                     </div>
 
@@ -193,10 +198,10 @@
                                                         <td>${cs.from_time} - ${cs.to_time}</td>
                                                         <td>
                                                             <c:if test="${cs.status eq true}">
-                                                                <span class="badge badge-success">Active</span>
+                                                                <span class="badge badge-success">Ongoing</span>
                                                             </c:if>
                                                             <c:if test="${cs.status eq false}">
-                                                                <span class="badge badge-danger">Deactive</span>
+                                                                <span class="badge badge-danger">Closed</span>
                                                             </c:if>
                                                         </td>
                                                         <td><a href="">Open</a></td>
@@ -287,7 +292,14 @@
         <script src="assets/js/script.js"></script>
         <script>
             function myFunction() {
-                var x = document.getElementById("snackbar");
+                var x = document.getElementById("snackbar1");
+                x.className = "show";
+                setTimeout(function () {
+                    x.className = x.className.replace("show", "");
+                }, 3000);
+            }
+            function myFunction2() {
+                var x = document.getElementById("snackbar2");
                 x.className = "show";
                 setTimeout(function () {
                     x.className = x.className.replace("show", "");
@@ -295,8 +307,8 @@
             }
             function myFunction2() {
                 var object = document.getElementsByTagName("th");
-                object.addEventListener('mousemove', function (e) {                    
-                    document.getElementsByClassName("fa-solid").style.display = "block";                    
+                object.addEventListener('mousemove', function (e) {
+                    document.getElementsByClassName("fa-solid").style.display = "block";
                 }
             }
         </script>

@@ -15,7 +15,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Preskool - Schedule Detail</title>
+        <title>Preskool - Team Detail</title>
 
         <link rel="shortcut icon" href="assets/img/favicon.png">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
@@ -109,10 +109,10 @@
                     <div class="page-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="page-title">Schedule Detail</h3>
+                                <h3 class="page-title">Team Detail</h3>
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="schedule">Schedule</a></li>
-                                    <li class="breadcrumb-item active">Schedule Detail</li>
+                                    <li class="breadcrumb-item"><a href="team">Team</a></li>
+                                    <li class="breadcrumb-item active">Team Detail</li>
                                 </ul>
                             </div>
                         </div>
@@ -124,48 +124,30 @@
                                 <div class="card-body">
                                     <c:choose>                                                                
                                         <c:when test="${add eq 'true'}">
-                                            <form action="scheduledetail?action=add" method="post">
+                                            <form action="teamdetail?action=add" method="post">
                                             </c:when>   
                                             <c:otherwise>
-                                                <form action="scheduledetail?action=update&&sid=${sdetail.schedule_id}" method="post">
+                                                <form action="teamdetail?action=update&&sid=${teamdetail.team_id}" method="post">
                                                 </c:otherwise>
                                             </c:choose>
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <h5 class="form-title"><span>Schedule</span></h5>
+                                                    <h5 class="form-title"><span>Team</span></h5>
                                                 </div>                                            
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label>Slot<i style="color: red;">*</i></label>
-                                                        <select name="slot">
-                                                            <c:forEach begin="1" end="6" var="slot">
-                                                                <c:choose>                                                                
-                                                                    <c:when test="${sdetail.slot_id == slot}" >
-                                                                        <option selected value="${slot}">${slot}</option>
-                                                                    </c:when>   
-                                                                    <c:otherwise>
-                                                                        <option value="${slot}">${slot}</option>
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                                            </c:forEach> 
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-sm-12">
                                                     <div class="form-group">
                                                         <label>Class<i style="color: red;">*</i></label>
                                                         <c:choose>                                                                
                                                             <c:when test="${add eq 'true'}">
-                                                                <select name="classmodel"> 
+                                                                <select name="classmodel">                                                        
                                                                 </c:when>   
                                                                 <c:otherwise>
-                                                                    <select disabled name="classmodel"> 
+                                                                    <select disabled name="classmodel">
                                                                     </c:otherwise>
-                                                                </c:choose>                                                                                                             
+                                                                </c:choose>                                                    
                                                                 <c:forEach items="${classlist}" var="class1">
                                                                     <c:choose>                                                                
-                                                                        <c:when test="${sdetail.class_id == class1.class_id}" >
+                                                                        <c:when test="${teamdetail.class_id == class1.class_id}" >
                                                                             <option selected value="${class1.class_id}">${class1.class_code}</option>
                                                                         </c:when>   
                                                                         <c:otherwise>
@@ -176,49 +158,24 @@
                                                             </select>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Room<i style="color: red;">*</i></label>
-                                                        <input required type="text" name="room" class="form-control" value="${sdetail.room_id}">
+                                                        <label>Code<i style="color: red;">*</i></label>
+                                                        <input type="text" name="code" class="form-control" value="${teamdetail.team_code}">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Training Date<i style="color: red;">*</i></label>                                                             
-                                                        <c:choose>                                                                
-                                                            <c:when test="${add eq 'true'}">
-                                                                <%
-                                                                    SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-                                                                    String date = dateformat.format(new Date());
-                                                                %>
-                                                                <input required type="date" class="form-control" name="date" value="<%=date.trim()%>" min="<%=date.trim()%>">
-                                                            </c:when>   
-                                                            <c:otherwise>
-                                                                <input required type="date" class="form-control" name="date" value="${sdetail.training_date}">
-                                                            </c:otherwise>
-                                                        </c:choose>
+                                                        <label>Topic<i style="color: red;">*</i></label>
+                                                        <input type="text" name="topic" class="form-control" value="${teamdetail.topic_name}">
                                                     </div>
-                                                </div>
-
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label>From Time<i style="color: red;">*</i></label>
-                                                        <input required type="time" class="form-control" value="${sdetail.from_time}">                                                    
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label>To Time<i style="color: red;">*</i></label>
-                                                        <input required type="time" class="form-control" value="${sdetail.to_time}"> 
-                                                    </div>
-                                                </div>
+                                                </div>                                                
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
                                                         <label>Status<i style="color: red;">*</i></label>
-                                                        <select class="form-control" name="status" required>
+                                                        <select class="form-control" name="status">
                                                             <c:choose>                                                                                                                                
-                                                                <c:when test="${sdetail.status eq false}" >
+                                                                <c:when test="${teamdetail.status eq false}" >
                                                                     <option>Active</option>
                                                                     <option selected>Deactive</option>
                                                                 </c:when>   
@@ -230,10 +187,17 @@
                                                             </c:choose>                                                            
                                                         </select>
                                                     </div>
-                                                </div>                                                
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Description<i style="color: red;">*</i></label>
+                                                        <input type="text" name="description" class="form-control" value="${teamdetail.description}">
+                                                    </div>
+                                                </div>                                                                                              
                                                 <div class="col-12">
                                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
+                                                </div>                                                
+
                                             </div>
                                         </form>
                                 </div>
@@ -242,6 +206,7 @@
                     </div>
                 </div>
             </div>
+            
 
         </div>
 

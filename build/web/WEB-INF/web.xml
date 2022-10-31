@@ -48,6 +48,14 @@
         <servlet-name>ClassSettingController</servlet-name>
         <servlet-class>Controller.ClassSettingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeamController</servlet-name>
+        <servlet-class>Controller.TeamController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamMemberController</servlet-name>
+        <servlet-class>Controller.TeamMemberController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/profile</url-pattern>
@@ -95,6 +103,14 @@
     <servlet-mapping>
         <servlet-name>ClassSettingController</servlet-name>
         <url-pattern>/classsetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamController</servlet-name>
+        <url-pattern>/team</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamMemberController</servlet-name>
+        <url-pattern>/teammember</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

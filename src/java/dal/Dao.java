@@ -17,7 +17,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  *
  * @author kieut
@@ -45,8 +44,8 @@ public class Dao extends DBContext {
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
-                        rs.getBoolean(7),
-                        rs.getString(8));
+                        rs.getString(7),
+                        rs.getBoolean(8));
             }
         } catch (Exception e) {
         }
@@ -93,6 +92,31 @@ public class Dao extends DBContext {
             }
         } catch (Exception e) {
         }
+        return null;
+    }
+
+    public User getUserbyID(int id) {
+        String sql = "select * from user where user_id=?;";
+        try {
+            con = new DBContext().connection;
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return new User(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getBoolean(8));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        System.out.println("updated");
         return null;
     }
 
@@ -171,7 +195,6 @@ public class Dao extends DBContext {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
 //        System.out.println("Deletion successful.");
 //        Files.deleteIfExists(Paths.get(u.getAvatar_url()));
 //        System.out.println(u);

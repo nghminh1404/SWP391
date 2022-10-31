@@ -15,7 +15,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Preskool - Books</title>
+        <title>Preskool - Schedule Detail</title>
 
         <link rel="shortcut icon" href="assets/img/favicon.png">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
@@ -125,18 +125,18 @@
                                     <c:choose>                                                                
                                         <c:when test="${add eq 'true'}">
                                             <form action="scheduledetail?action=add" method="post">
-                                        </c:when>   
-                                        <c:otherwise>
-                                            <form action="scheduledetail?action=update&&sid=${sdetail.schedule_id}" method="post">
-                                        </c:otherwise>
-                                    </c:choose>
+                                            </c:when>   
+                                            <c:otherwise>
+                                                <form action="scheduledetail?action=update&&sid=${sdetail.schedule_id}" method="post">
+                                                </c:otherwise>
+                                            </c:choose>
                                             <div class="row">
                                                 <div class="col-12">
                                                     <h5 class="form-title"><span>Schedule</span></h5>
                                                 </div>                                            
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Slot</label>
+                                                        <label>Slot<i style="color: red;">*</i></label>
                                                         <select name="slot">
                                                             <c:forEach begin="1" end="6" var="slot">
                                                                 <c:choose>                                                                
@@ -154,82 +154,86 @@
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Class</label>
-
-                                                        <select name="classmodel">                                                        
-                                                            <c:forEach items="${classlist}" var="class1">
-                                                                <c:choose>                                                                
-                                                                    <c:when test="${sdetail.class_id == class1.class_id}" >
-                                                                        <option selected value="${class1.class_id}">${class1.class_code}</option>
-                                                                    </c:when>   
-                                                                    <c:otherwise>
-                                                                        <option value="${class1.class_id}">${class1.class_code}</option>
+                                                        <label>Class<i style="color: red;">*</i></label>
+                                                        <c:choose>                                                                
+                                                            <c:when test="${add eq 'true'}">
+                                                                <select name="classmodel"> 
+                                                                </c:when>   
+                                                                <c:otherwise>
+                                                                    <select disabled name="classmodel"> 
                                                                     </c:otherwise>
-                                                                </c:choose>
-                                                            </c:forEach>                                            
-                                                        </select>
+                                                                </c:choose>                                                                                                             
+                                                                <c:forEach items="${classlist}" var="class1">
+                                                                    <c:choose>                                                                
+                                                                        <c:when test="${sdetail.class_id == class1.class_id}" >
+                                                                            <option selected value="${class1.class_id}">${class1.class_code}</option>
+                                                                        </c:when>   
+                                                                        <c:otherwise>
+                                                                            <option value="${class1.class_id}">${class1.class_code}</option>
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </c:forEach>                                            
+                                                            </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Room</label>
-                                                        <input type="text" name="room" class="form-control" value="${sdetail.room_id}">
+                                                        <label>Room<i style="color: red;">*</i></label>
+                                                        <input required type="text" name="room" class="form-control" value="${sdetail.room_id}">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-sm-6">
                                                     <div class="form-group">
-                                                        <label>Training Date</label>                                                             
+                                                        <label>Training Date<i style="color: red;">*</i></label>                                                             
                                                         <c:choose>                                                                
                                                             <c:when test="${add eq 'true'}">
                                                                 <%
-                                                                    SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
+                                                                    SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
                                                                     String date = dateformat.format(new Date());
                                                                 %>
-                                                                <input type="date" class="form-control" name="date" value="<%=date.trim()%>">
+                                                                <input required type="date" class="form-control" name="date" value="<%=date.trim()%>" min="<%=date.trim()%>">
                                                             </c:when>   
                                                             <c:otherwise>
-                                                                <input type="date" class="form-control" name="date" value="${sdetail.training_date}">
+                                                                <input required type="date" class="form-control" name="date" value="${sdetail.training_date}">
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </div>
                                                 </div>
 
-                                                <c:if test="${add != 'true'}">                                                    
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="form-group">
-                                                            <label>From Time</label>
-                                                            <input type="text" class="form-control" value="${sdetail.from_time}" disabled>                                                    
-                                                        </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>From Time<i style="color: red;">*</i></label>
+                                                        <input required type="time" class="form-control" value="${sdetail.from_time}">                                                    
                                                     </div>
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="form-group">
-                                                            <label>To Time</label>
-                                                            <input type="text" class="form-control" value="${sdetail.to_time}" disabled> 
-                                                        </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>To Time<i style="color: red;">*</i></label>
+                                                        <input required type="time" class="form-control" value="${sdetail.to_time}"> 
                                                     </div>
-                                                </c:if>   
-                                                    <div class="col-12 col-sm-6">
-                                                        <div class="form-group">
-                                                            <label>Status</label>
-                                                            <select class="form-control" name="status">
-                                                                <c:choose>                                                                                                                                
-                                                                    <c:when test="${sdetail.status eq false}" >
-                                                                        <option>Active</option>
-                                                                        <option selected>Deactive</option>
-                                                                    </c:when>   
+                                                </div>
+                                                <div class="col-12 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Status<i style="color: red;">*</i></label>
+                                                        <select class="form-control" name="status" required>
+                                                            <c:choose>                                                                                                                                
+                                                                <c:when test="${sdetail.status eq false}" >
+                                                                    <option>Active</option>
+                                                                    <option selected>Deactive</option>
+                                                                </c:when>   
 
-                                                                    <c:otherwise>
-                                                                        <option selected>Active</option>
-                                                                        <option>Deactive</option>
-                                                                    </c:otherwise>
-                                                                </c:choose>                                                            
-                                                            </select>
-                                                        </div>
-                                                    </div>                                                
-                                                    <div class="col-12">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                                <c:otherwise>
+                                                                    <option selected>Active</option>
+                                                                    <option>Deactive</option>
+                                                                </c:otherwise>
+                                                            </c:choose>                                                            
+                                                        </select>
                                                     </div>
+                                                </div>                                                
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
                                             </div>
                                         </form>
                                 </div>

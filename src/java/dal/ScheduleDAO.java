@@ -127,20 +127,19 @@ public class ScheduleDAO {
         if (classmodel.equalsIgnoreCase("all")) {
             classmodel = "%%";
         }
-        if (status.equalsIgnoreCase("active")) {
-            status = "1";
-        } else if (status.equalsIgnoreCase("deactive")) {
-            status = "0";
+        if (status.equalsIgnoreCase("ongoing")) {
+            status = "=1";
+        } else if (status.equalsIgnoreCase("closed")) {
+            status = "=0";
         } else {
-            status = "%%";
+            status = "is not null";
         }        
-        query = "SELECT * FROM schedule WHERE class_id like ? and status like ?";
+        query = "SELECT * FROM schedule WHERE class_id like ? and status "+status;
         System.out.println(query);
         try {
             con = new DBContext().connection;
             ps = con.prepareStatement(query);
-            ps.setString(1, classmodel);
-            ps.setString(2, status);            
+            ps.setString(1, classmodel);                 
             rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(new Schedule(
@@ -160,6 +159,47 @@ public class ScheduleDAO {
         return list;
     }
 
+    public List<Schedule> searchScheduleLimit(String classmodel, String status, int curpage) {
+        List<Schedule> list = new ArrayList<>();
+        int offset = (curpage-1)*10;
+        String query = "SELECT * FROM schedule;";
+
+        if (classmodel.equalsIgnoreCase("all")) {
+            classmodel = "%%";
+        }
+        if (status.equalsIgnoreCase("ongoing")) {
+            status = "=1";
+        } else if (status.equalsIgnoreCase("closed")) {
+            status = "=0";
+        } else {
+            status = "is not null";
+        }        
+        query = "SELECT * FROM schedule WHERE class_id like ? and status "+status+ " limit 10 offset ?";
+        System.out.println(query);
+        try {
+            con = new DBContext().connection;
+            ps = con.prepareStatement(query);
+            ps.setString(1, classmodel);   
+            ps.setInt(2, offset);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Schedule(
+                        rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getTime(6),
+                        rs.getTime(7),
+                        rs.getBoolean(8)
+                ));
+
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+    
     public void UpdateSchedule(int schedule_id, int slot_id, int room_id, String training_date, String from_time, String to_time, boolean status) {
         String sql = "update schedule set slot_id=?, room_id=?, training_date=?, from_time=?, to_time=?, status=? where schedule_id=?;";
         try {
@@ -197,7 +237,7 @@ public class ScheduleDAO {
 //        cs.UpdateSchedule(2, 3, "van vay a", "okioki", "ko order ha", true, "love u chu ca mo", 2);
 //        cs.DeleteSchedule(24);
 //        System.out.println(cs.getSettingbyid("2").getSetting_tiltle());
-        List<Schedule> list = cs.searchSchedule("SE1627", "active");
+        List<Schedule> list = cs.searchScheduleLimit("2", "ongoing", 1);
         for (Schedule item : list) {
             System.out.println(item.getSchedule_id());
         }

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Model;
-        
+
 /**
  *
  * @author kieut
@@ -11,30 +11,26 @@ package Model;
 public class User {
 
     int user_id;
+    String user_name;
     String full_name;
     String email;
     String mobile;
     String password;
     String avatar_url;
     Boolean status;
-    String note;
 
     public User() {
     }
 
-    public User(int user_id, String full_name, String email, String mobile, String password, String avatar_url, Boolean status, String note) {
+    public User(int user_id, String user_name, String full_name, String email, String mobile, String password, String avatar_url, Boolean status) {
         this.user_id = user_id;
+        this.user_name = user_name;
         this.full_name = full_name;
         this.email = email;
         this.mobile = mobile;
         this.password = password;
-        if (avatar_url.isEmpty()) {
-            this.avatar_url = "assets/img/profiles/avatar-main.jpg";
-        } else {
-            this.avatar_url = avatar_url;            
-        }
+        this.avatar_url = avatar_url;
         this.status = status;
-        this.note = note;
     }
 
     public int getUser_id() {
@@ -43,6 +39,14 @@ public class User {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
     public String getFull_name() {
@@ -91,19 +95,6 @@ public class User {
 
     public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" + "user_id=" + user_id + ", full_name=" + full_name + ", email=" + email + ", mobile=" + mobile + ", password=" + password + ", avatar_url=" + avatar_url + ", status=" + status + ", note=" + note + '}';
     }
 
 }
