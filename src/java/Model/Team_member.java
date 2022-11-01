@@ -13,6 +13,7 @@ import java.util.List;
  * @author Hp
  */
 public class Team_member {
+
     private int team_id, user_id;
     private boolean is_leader, is_active;
 
@@ -57,10 +58,10 @@ public class Team_member {
     public void setIs_active(boolean is_active) {
         this.is_active = is_active;
     }
-    
-    public User getUser(){
+
+    public User getUser() {
         Dao dao = new Dao();
         User u = dao.getUserbyID(user_id);
         return u;
-    }
+    }    
 }

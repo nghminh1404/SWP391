@@ -7,6 +7,7 @@ package dal;
 import Model.ClassModel;
 import Model.Team;
 import Model.Team_member;
+import Model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -72,6 +73,23 @@ public class TeamDAO {
         return list;
     }
 
+    public List<User> getUserByTeamID(int team_id) {
+        List<User> list = new ArrayList<>();
+        String query = "select * from class_user where class_id = (select class_id from team where team_id=?);";
+        Dao dao = new Dao();
+        try {
+            con = new DBContext().connection;
+            ps = con.prepareStatement(query);
+            ps.setInt(1, team_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(dao.getUserbyID(rs.getInt(2)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public Team getTeambyid(String id) {
         String query = "SELECT * FROM swp.team where team_id=?";
         try {
@@ -92,8 +110,8 @@ public class TeamDAO {
         }
         return null;
     }
-    
-    public List<Team> searchTeam(String classmodel, String status, String name) {       
+
+    public List<Team> searchTeam(String classmodel, String status, String name) {
         List<Team> list = new ArrayList<>();
         String query = "SELECT * FROM team;";
 
@@ -221,10 +239,10 @@ public class TeamDAO {
     }
 
     public int cloneByID(int team_id) {
-        Team t = getTeambyid(team_id+"");
+        Team t = getTeambyid(team_id + "");
         InsertTeam(t.getClass_id(), t.getTeam_code(), t.getTopic_name(), t.getStatus(), t.getDescription());
         List<Team> list = getTeam();
-        int id = list.get(list.size()-1).getTeam_id();
+        int id = list.get(list.size() - 1).getTeam_id();
         TeamMemberDAO td = new TeamMemberDAO();
         List<Team_member> tm = td.getTeam_memberByTeamID(team_id);
         for (Team_member item : tm) {
@@ -232,16 +250,17 @@ public class TeamDAO {
         }
         return id;
     }
+
     public static void main(String[] args) {
         TeamDAO cs = new TeamDAO();
 //        cs.UpdateTeam(2, 3, "van vay a", "okioki", "ko order ha", true, "love u chu ca mo", 2);
 //        cs.DeleteTeam(24);
 //        System.out.println(cs.getSettingbyid("2").getSetting_tiltle());
 
-        List<Team> list = cs.searchTeam("2", "deactive", "");
+        List<User> list = cs.getUserByTeamID(2);
 
-        for (Team item : list) {
-            System.out.println(item.getTeam_id());
+        for (User item : list) {
+            System.out.println(item.getFull_name());
         }
 
         int page = (int) 15 / 10 + (15 % 10 == 0 ? 0 : 1);

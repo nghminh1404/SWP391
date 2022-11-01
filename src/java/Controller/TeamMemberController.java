@@ -4,7 +4,6 @@
  */
 package Controller;
 
-import Model.ClassModel;
 import Model.Team;
 import Model.Team_member;
 import Model.User;
@@ -65,17 +64,32 @@ public class TeamMemberController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String team_id = request.getParameter("tid");
+        String action = request.getParameter("action");
         TeamMemberDAO dao = new TeamMemberDAO();
         TeamDAO tdao = new TeamDAO();
+        if (action == null) {
+            action = "view";
+        }
+        if (action.equals("delete")) {
+            String mid = request.getParameter("mid");
+            dao.DeleteTeam_member(Integer.parseInt(mid));
+        }
         Team t = tdao.getTeambyid(team_id);
         HttpSession session = request.getSession();
         session.setAttribute("team", t);
         List<Team_member> list = dao.getTeam_memberByTeamID(Integer.parseInt(team_id));
+        request.setAttribute("leader", "0");
         for (Team_member item : list) {
-            System.out.println(item.getUser().getFull_name());
+            if (item.isIs_leader()) {
+                System.out.println("1");
+                request.setAttribute("leader", "1");
+                break;
+            }
         }
+        List<User> listuser = tdao.getUserByTeamID(Integer.parseInt(team_id));
         session.setAttribute("member", list);
-        request.getRequestDispatcher("Team_member.jsp").forward(request, response);
+        session.setAttribute("userlist", listuser);
+        request.getRequestDispatcher("TeamMember.jsp").forward(request, response);
 
     }
 
@@ -90,27 +104,19 @@ public class TeamMemberController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String classmodel = request.getParameter("classmodel");
-        String status = request.getParameter("status");
-        String name = request.getParameter("team");
-//        String fromDate = request.getParameter("fromDate");
-//        String toDate = request.getParameter("toDate");
-        TeamDAO dao = new TeamDAO();
-        if (status == null) {
-            status = "both";
+        String team_id = request.getParameter("tid");
+        String user = request.getParameter("member");
+        if (user.equals("0")) {
+            doGet(request, response);
         }
-        HttpSession session = request.getSession();
-        String curpage = request.getParameter("curpage");
-        if (curpage == null) {
-            curpage = "1";
+        String role = request.getParameter("role");
+        TeamMemberDAO dao = new TeamMemberDAO();
+        if (role.equals("leader")) {
+            dao.InsertTeam_member(Integer.parseInt(team_id), Integer.parseInt(user), true, true);
+        } else {
+            dao.InsertTeam_member(Integer.parseInt(team_id), Integer.parseInt(user), false, true);
         }
-        List<Team> list = dao.searchTeam(classmodel, status, name);
-        int page = (int) list.size() / 10 + (list.size() % 10 == 0 ? 0 : 1);
-        session.setAttribute("page", page);
-        session.setAttribute("curpage", Integer.parseInt(curpage));
-        List<Team> listpage1 = dao.searchTeamLimit(classmodel, status, name, Integer.parseInt(curpage));
-        session.setAttribute("teamlist", listpage1);
-        request.getRequestDispatcher("Team.jsp").forward(request, response);
+        doGet(request, response);
 
     }
 

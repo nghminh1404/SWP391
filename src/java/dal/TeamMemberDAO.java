@@ -116,7 +116,7 @@ public class TeamMemberDAO {
     }
 
     public void DeleteTeam_member(int team_member_id) {
-        String sql = "DELETE FROM team_member WHERE team_member_id=?";
+        String sql = "DELETE FROM team_member WHERE user_id=?";
         try {
             con = new DBContext().connection;
             ps = con.prepareStatement(sql);
@@ -134,7 +134,7 @@ public class TeamMemberDAO {
 //        cs.DeleteTeam_member(24);
 //        System.out.println(cs.getSettingbyid("2").getSetting_tiltle());
 
-        List<Team_member> list = cs.getTeam_memberByTeamID(2);
+        List<Team_member> list = cs.getTeam_memberByTeamID(24);
 
         for (Team_member item : list) {
             System.out.println(item.getUser().getFull_name());

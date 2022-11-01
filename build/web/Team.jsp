@@ -193,7 +193,7 @@
                                                                 <span class="badge badge-danger">Deactive</span>
                                                             </c:if>
                                                         </td>                                                        
-                                                        <td><a href="teammember?tid=${cs.team_id}">View</a></td>
+                                                        <td><a href="teammember?action=view&&tid=${cs.team_id}">View</a></td>
                                                         <td class="text-right">
                                                             <div class="actions">
                                                                 <a href="teamdetail?action=update&&sid=${cs.team_id}" class="btn btn-sm bg-success-light mr-2">
