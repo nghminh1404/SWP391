@@ -30,4 +30,17 @@ public class DBContext {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public Connection getConnection() {
+        try {
+            String user = "root";
+            String pass = "Kkkkk1312@";
+            String url = "jdbc:mysql://localhost:3306/swp?zeroDateTimeBehavior=CONVERT_TO_NULL";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(url, user, pass);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return connection;
+    }
 }

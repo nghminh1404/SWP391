@@ -56,6 +56,62 @@
         <servlet-name>TeamMemberController</servlet-name>
         <servlet-class>Controller.TeamMemberController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>Controller.RegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerifyController</servlet-name>
+        <servlet-class>Controller.VerifyController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WebContactController</servlet-name>
+        <servlet-class>Controller.WebContactController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WebContactDetailController</servlet-name>
+        <servlet-class>Controller.WebContactDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePassword</servlet-name>
+        <servlet-class>Controller.ChangePassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SystemPermissionController</servlet-name>
+        <servlet-class>Controller.SystemPermissionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>Controller.LoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyController</servlet-name>
+        <url-pattern>/verify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WebContactController</servlet-name>
+        <url-pattern>/web_contact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WebContactDetailController</servlet-name>
+        <url-pattern>/web_contact_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassword</servlet-name>
+        <url-pattern>/changepassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SystemPermissionController</servlet-name>
+        <url-pattern>/systempermission</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/profile</url-pattern>

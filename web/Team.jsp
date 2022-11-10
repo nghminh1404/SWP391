@@ -114,7 +114,7 @@
         <c:if test="${delete == 1}">
             <div id="snackbar">Delete Successfully!!!</div>
         </c:if>        
-        
+
 
         <div class="main-wrapper">
 
@@ -266,8 +266,8 @@
 
             </div>
 
+            <%@include file="footer.jsp" %>
         </div>
-        <%--<%@include file="footer.jsp" %>--%>
 
 
         <script src="assets/js/jquery-3.6.0.min.js"></script>

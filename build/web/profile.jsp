@@ -22,7 +22,7 @@
     </head>
     <body>
         <div class="main-wrapper">
-<div class="header">
+            <div class="header">
                 <div class="header-left">
                     <a href="index.html" class="logo">
                         <img src="assets/img/logo.png" alt="Logo">
@@ -365,17 +365,17 @@
                                             </div>
                                         </div>
                                         <c:if test="${!sessionScope.user.status}">
-                                        <div class="col-lg-3">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title d-flex justify-content-between">
-                                                        <span>Account Status</span>
-                                                        <a class="edit-link" href="#"><i class="far fa-edit mr-1"></i> Edit</a>
-                                                    </h5>                                                    
+                                            <div class="col-lg-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title d-flex justify-content-between">
+                                                            <span>Account Status</span>
+                                                            <a class="edit-link" href="#"><i class="far fa-edit mr-1"></i> Edit</a>
+                                                        </h5>                                                    
                                                         <button class="btn btn-success" type="button"><i class="fe fe-check-verified"></i>${sessionScope.user.status}</button>                                                  
-                                                </div>
-                                            </div>                                 
-                                        </div>
+                                                    </div>
+                                                </div>                                 
+                                            </div>
                                         </c:if>
                                     </div>
                                 </div>
@@ -410,6 +410,7 @@
                     </div>
                 </div>
             </div>
+            <%@include file="footer.jsp" %>
         </div>
         <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.6.0.min.js"></script>
         <script src="assets/js/popper.min.js"></script>

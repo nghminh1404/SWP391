@@ -6,6 +6,16 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<style>
+    .submenu a:visited {
+        color: #18aefa;
+    }
+
+    .submenu a:link {
+        color: #6f6f6f;
+    }
+</style>
+
 <div class="header">
     <div class="header-left">
         <a href="demodashboard.html" class="logo">
@@ -135,156 +145,85 @@
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+                    <a href="classes"><i class="fas fa-user-graduate"></i> <span> Class</span> <span class="menu-arrow"></span></a>                    
                     <ul>
-                        <li><a href="students.html">Student List</a></li>
-                        <li><a href="student-details.html">Student View</a></li>
-                        <li><a href="add-student.html">Student Add</a></li>
-                        <li><a href="edit-student.html">Student Edit</a></li>
+                        <li><a href="classes">Class List</a></li>
+                        <li><a href="classdetail">Class Details</a></li>                        
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Setting</span> <span class="menu-arrow"></span></a>
+                    <a href="classsetting"><i class="fas fa-chalkboard-teacher"></i> <span>Class Setting</span> <span class="menu-arrow"></span></a>                    
                     <ul>
-                        <li><a href="settinglist">Setting List</a></li>                                    
-                        <li><a href="settingdetail">Setting Detail</a></li>                                    
+                        <li><a href="classsetting">Class Setting List</a></li>
+                        <li><a href="classsettingdetail">Class Setting Details</a></li>                        
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span class="menu-arrow"></span></a>
+                    <a href="milestone"><i class="fas fa-book-reader"></i> <span> Milestone</span> <span class="menu-arrow"></span></a>                    
                     <ul>
-                        <li><a href="subjects.html">Subject List</a></li>
-                        <li><a href="add-subject.html">Subject Add</a></li>
-                        <li><a href="edit-subject.html">Subject Edit</a></li>
+                        <li><a href="milestone">Milestone List</a></li>
+                        <li><a href="milestonedetail">Milestone Details</a></li>                        
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fas fa-building"></i> <span> Class</span> <span class="menu-arrow"></span></a>
+                    <a href="schedule"><i class="fas fa-building"></i> <span> Schedule</span> <span class="menu-arrow"></span></a>                    
                     <ul>
-                        <li><a href="classlist">Class List</a></li>                                    
-                        <li><a href="classdetail">Class Details</a></li>
+                        <li><a href="schedule">Schedule List</a></li>
+                        <li><a href="scheduledetail">Schedule Details</a></li>                        
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fas fa-building"></i> <span> Class Setting</span> <span class="menu-arrow"></span></a>
+                    <a href="setting"><i class="fas fa-building"></i> <span> Setting</span> <span class="menu-arrow"></span></a>                    
                     <ul>
-                        <li><a href="classsetting">Class Setting List</a></li>                                    
-                        <li><a href="classsettingdetail">Class Setting Details</a></li>
+                        <li><a href="setting">Setting List</a></li>
+                        <li><a href="settingdetail">Setting Details</a></li>                        
                     </ul>
                 </li>                            
                 <li class="submenu">
-                    <a href="#"><i class="fas fa-building"></i> <span> Milestone</span> <span class="menu-arrow"></span></a>
+                    <a href="team"><i class="fas fa-building"></i> <span> Team</span> <span class="menu-arrow"></span></a>                    
                     <ul>
-                        <li><a href="milestone">Milestone List</a></li>                                    
-                        <li><a href="milestonedetail">Milestone Details</a></li>
-                    </ul>
-                </li>
-                <li class="menu-title">
-                    <span>Management</span>
-                </li>
-                <li class="submenu">
-                    <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="fees-collections.html">Fees Collection</a></li>
-                        <li><a href="expenses.html">Expenses</a></li>
-                        <li><a href="salary.html">Salary</a></li>
-                        <li><a href="add-fees-collection.html">Add Fees</a></li>
-                        <li><a href="add-expenses.html">Add Expenses</a></li>
-                        <li><a href="add-salary.html">Add Salary</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="holiday.html"><i class="fas fa-holly-berry"></i> <span>Holiday</span></a>
-                </li>
-                <li>
-                    <a href="fees.html"><i class="fas fa-comment-dollar"></i> <span>Fees</span></a>
-                </li>
-                <li>
-                    <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
-                </li>
-                <li>
-                    <a href="event.html"><i class="fas fa-calendar-day"></i> <span>Events</span></a>
-                </li>
-                <li>
-                    <a href="time-table.html"><i class="fas fa-table"></i> <span>Time Table</span></a>
-                </li>
-                <li>
-                    <a href="library.html"><i class="fas fa-book"></i> <span>Library</span></a>
-                </li>
-                <li class="menu-title">
-                    <span>Pages</span>
-                </li>
-                <li class="submenu">
-                    <a href="#"><i class="fas fa-shield-alt"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
-                        <li><a href="forgot-password.html">Forgot Password</a></li>
-                        <li><a href="error-404.html">Error Page</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="blank-page.html"><i class="fas fa-file"></i> <span>Blank Page</span></a>
-                </li>
-                <li class="menu-title">
-                    <span>Others</span>
-                </li>
-                <li>
-                    <a href="sports.html"><i class="fas fa-baseball-ball"></i> <span>Sports</span></a>
-                </li>
-                <li>
-                    <a href="hostel.html"><i class="fas fa-hotel"></i> <span>Hostel</span></a>
-                </li>
-                <li>
-                    <a href="transport.html"><i class="fas fa-bus"></i> <span>Transport</span></a>
-                </li>
-                <li class="menu-title">
-                    <span>UI Interface</span>
-                </li>
-                <li>
-                    <a href="components.html"><i class="fas fa-vector-square"></i> <span>Components</span></a>
-                </li>
-                <li class="submenu">
-                    <a href="#"><i class="fas fa-columns"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="form-basic-inputs.html">Basic Inputs </a></li>
-                        <li><a href="form-input-groups.html">Input Groups </a></li>
-                        <li><a href="form-horizontal.html">Horizontal Form </a></li>
-                        <li><a href="form-vertical.html"> Vertical Form </a></li>
-                        <li><a href="form-mask.html"> Form Mask </a></li>
-                        <li><a href="form-validation.html"> Form Validation </a></li>
+                        <li><a href="team">Team List</a></li>
+                        <li><a href="teamdetail">Team Details</a></li>                        
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="#"><i class="fas fa-table"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
+                    <a href="webcontact"><i class="fas fa-building"></i> <span> Web Contact</span> <span class="menu-arrow"></span></a>                    
                     <ul>
-                        <li><a href="tables-basic.html">Basic Tables </a></li>
-                        <li><a href="data-tables.html">Data Table </a></li>
+                        <li><a href="web_contact">web Contact List</a></li>
+                        <li><a href="web_contact_detail">Web Contact Details</a></li>                        
                     </ul>
                 </li>
                 <li class="submenu">
-                    <a href="javascript:void(0);"><i class="fas fa-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
+                    <a href="systempermission"><i class="fas fa-building"></i> <span> Permission</span> <span class="menu-arrow"></span></a>                    
                     <ul>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"> <span>Level 1</span> <span class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
-                                <li class="submenu">
-                                    <a href="javascript:void(0);"> <span> Level 2</span> <span class="menu-arrow"></span></a>
-                                    <ul>
-                                        <li><a href="javascript:void(0);">Level 3</a></li>
-                                        <li><a href="javascript:void(0);">Level 3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="javascript:void(0);"> <span>Level 2</span></a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);"> <span>Level 1</span></a>
-                        </li>
+                        <li><a href="systempermission">Permission List</a></li>
+                        <li><a href="permissiondetail">Class Details</a></li>                        
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="userlist"><i class="fas fa-building"></i> <span> User Management</span> <span class="menu-arrow"></span></a>                    
+                    <ul>
+                        <li><a href="userlist">User List</a></li>
+                        <li><a href="userdetail">User Details</a></li>                        
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </div>             
+
+<script>
+    var menuItems = document.querySelectorAll('li a ul li a');
+    var changeneed = document.getElementsByClassName("submenu");
+    var clicked = document.getElementsByClassName("active");
+    for (var i = 0; i < menuItems.length - 1; i++) {
+        var menuItem = menuItems[i];
+        menuItem.onclick = function (event) {
+            for (var i = 0; i < clicked.length-1; i++){
+                clicked[i].classList.remove("active");
+            }
+            menuItem.classList.add("active");
+            changeneed[i].classList.add("active");
+        };
+    }
+</script>
