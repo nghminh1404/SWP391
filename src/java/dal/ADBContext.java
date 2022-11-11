@@ -23,7 +23,11 @@ public abstract class ADBContext<T> {
     public ADBContext() {
         try {
             String user = "root";
+<<<<<<< .merge_file_a05364
             String pass = "Kkkkk1312@";
+=======
+            String pass = "123456";
+>>>>>>> .merge_file_a16568
             String url = "jdbc:mysql://localhost:3306/swp?zeroDateTimeBehavior=CONVERT_TO_NULL";
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url, user, pass);

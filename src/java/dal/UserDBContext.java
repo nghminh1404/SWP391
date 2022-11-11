@@ -1,4 +1,8 @@
+<<<<<<< .merge_file_a09056
  /*
+=======
+/*
+>>>>>>> .merge_file_a03200
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -38,9 +42,15 @@ public class UserDBContext extends ADBContext<User> {
                     user.setAvatar_url(rs.getString("avatar_url"));
                     Setting s = new Setting();
                     s.setSetting_title(rs.getString("setting_title"));
+<<<<<<< .merge_file_a09056
                     
                     user.setStatus(rs.getBoolean("status"));
 //                    user.setNote(rs.getString("note"));
+=======
+                    user.setSetting(s);
+                    user.setStatus(rs.getBoolean("status"));
+                    user.setNote(rs.getString("note"));
+>>>>>>> .merge_file_a03200
                     return user;
                }
           } catch (SQLException ex) {
@@ -67,7 +77,11 @@ public class UserDBContext extends ADBContext<User> {
                     u.setStatus(rs.getBoolean("status"));
                     Setting s = new Setting();
                     s.setSetting_title(rs.getString("setting_title"));
+<<<<<<< .merge_file_a09056
 //                    u.setSetting(s);
+=======
+                    u.setSetting(s);
+>>>>>>> .merge_file_a03200
                     users.add(u);
                }
           } catch (SQLException ex) {
@@ -113,7 +127,11 @@ public class UserDBContext extends ADBContext<User> {
                     Setting s = new Setting();
                     s.setSetting_title(rs.getString("setting_title"));
                     s.setSetting_id(rs.getInt("setting_id"));
+<<<<<<< .merge_file_a09056
 //                    u.setSetting(s);
+=======
+                    u.setSetting(s);
+>>>>>>> .merge_file_a03200
                     u.setStatus(rs.getBoolean("status"));
                     users.add(u);
                }
@@ -180,7 +198,11 @@ public class UserDBContext extends ADBContext<User> {
                     u.setStatus(rs.getBoolean("status"));
                     Setting s = new Setting();
                     s.setSetting_title(rs.getString("setting_title"));
+<<<<<<< .merge_file_a09056
 //                    u.setSetting(s);
+=======
+                    u.setSetting(s);
+>>>>>>> .merge_file_a03200
                     users.add(u);
                }
           } catch (SQLException ex) {

@@ -98,7 +98,11 @@
                                         <a href="#">
                                             <div class="media">
                                                 <span class="avatar avatar-sm">
+<<<<<<< .merge_file_a12588
                                                     <img class="avatar-img rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
+=======
+                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-13.jpg">
+>>>>>>> .merge_file_a02636
                                                 </span>
                                                 <div class="media-body">
                                                     <p class="noti-details"><span class="noti-title">Mercury Software Inc</span> added a new product <span class="noti-title">Apple MacBook Pro</span></p>
@@ -116,7 +120,11 @@
                     </li>
                     <li class="nav-item dropdown has-arrow">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+<<<<<<< .merge_file_a12588
                             <span class="user-img"><img class="rounded-circle" src="${sessionScope.user.avatar_url}" width="31" height="31" style="object-fit: cover;" alt="Ryan Taylor"></span>
+=======
+                            <span class="user-img"><img class="rounded-circle" src="${sessionScope.user.avatar_url}" width="31" alt="Ryan Taylor"></span>
+>>>>>>> .merge_file_a02636
                         </a>
                         <div class="dropdown-menu">
                             <div class="user-header">
@@ -293,7 +301,10 @@
                     </div>
                 </div>
             </div>
+<<<<<<< .merge_file_a12588
 
+=======
+>>>>>>> .merge_file_a02636
             <div class="page-wrapper">
                 <div class="content container-fluid">
                     <div class="page-header">
@@ -301,7 +312,11 @@
                             <div class="col">
                                 <h3 class="page-title">Profile</h3>
                                 <ul class="breadcrumb">
+<<<<<<< .merge_file_a12588
                                     <li class="breadcrumb-item"><a href="demodashboard">Dashboard</a></li>
+=======
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+>>>>>>> .merge_file_a02636
                                     <li class="breadcrumb-item active">Profile</li>
                                 </ul>
                             </div>
@@ -313,7 +328,11 @@
                                 <div class="row align-items-center">
                                     <div class="col-auto profile-image">
                                         <a href="#">
+<<<<<<< .merge_file_a12588
                                             <img class="rounded-circle" style="width: 200px; height: 122px; object-fit: cover;" alt="User Image" src="${sessionScope.user.avatar_url}"/>                                            
+=======
+                                            <img class="rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
+>>>>>>> .merge_file_a02636
                                         </a>
                                     </div>
                                     <div class="col ml-md-n2 profile-user-info">
@@ -323,7 +342,11 @@
                                                                       <div class="about-text">Lorem ipsum dolor sit amet.</div>-->
                                     </div>
                                     <div class="col-auto profile-btn">
+<<<<<<< .merge_file_a12588
                                         <a href="editprofile" class="btn btn-primary">
+=======
+                                        <a href="editpersonalinfo" class="btn btn-primary">
+>>>>>>> .merge_file_a02636
                                             Edit
                                         </a>
                                     </div>
@@ -347,7 +370,11 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title d-flex justify-content-between">
                                                         <span>Personal Details</span>                                          
+<<<<<<< .merge_file_a12588
                                                         <a class="edit-link" href="editprofile"><i class="far fa-edit mr-1"></i>Edit</a>
+=======
+                                                        <a class="edit-link" href="editpersonalinfo"><i class="far fa-edit mr-1"></i>Edit</a>
+>>>>>>> .merge_file_a02636
                                                     </h5>
                                                     <div class="row">
                                                         <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
@@ -364,6 +391,7 @@
                                                 </div>
                                             </div>
                                         </div>
+<<<<<<< .merge_file_a12588
                                         <c:if test="${!sessionScope.user.status}">
                                             <div class="col-lg-3">
                                                 <div class="card">
@@ -377,6 +405,21 @@
                                                 </div>                                 
                                             </div>
                                         </c:if>
+=======
+                                        <div class="col-lg-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title d-flex justify-content-between">
+                                                        <span>Account Status</span>
+                                                        <a class="edit-link" href="#"><i class="far fa-edit mr-1"></i> Edit</a>
+                                                    </h5>
+                                                    <c:if test="${!sessionScope.user.status}">
+                                                        <button class="btn btn-success" type="button"><i class="fe fe-check-verified"></i>${sessionScope.user.status}</button>
+                                                    </c:if>
+                                                </div>
+                                            </div>                                 
+                                        </div>
+>>>>>>> .merge_file_a02636
                                     </div>
                                 </div>
                                 <div id="password_tab" class="tab-pane fade">
@@ -410,7 +453,10 @@
                     </div>
                 </div>
             </div>
+<<<<<<< .merge_file_a12588
             <%@include file="footer.jsp" %>
+=======
+>>>>>>> .merge_file_a02636
         </div>
         <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.6.0.min.js"></script>
         <script src="assets/js/popper.min.js"></script>

@@ -12,6 +12,7 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+<<<<<<< .merge_file_a04424
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -21,6 +22,17 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+=======
+import jakarta.mail.Authenticator;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.AddressException;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
+>>>>>>> .merge_file_a10644
 import Model.User;
 
 /**
@@ -67,7 +79,11 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+<<<<<<< .merge_file_a04424
         request.getRequestDispatcher("register.jsp").forward(request, response);
+=======
+        request.getRequestDispatcher("/register.jsp").forward(request, response);
+>>>>>>> .merge_file_a10644
     }
 
     private String getRandom() {

@@ -1,33 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dal;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author Ngo Tung Son
+ * @author dan2k
  */
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 public class DBContext {
 
-    protected Connection connection;
+    Connection con;
+    
+    public Connection getConnection() throws Exception {
+        String user = "root";
+        String pass = "danpott123";
+        String url = "jdbc:mysql://localhost:3306/swp";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con = DriverManager.getConnection(url, user, pass);
+        return con;
+    }
+    
+    
+}
 
-    public DBContext() {
+class Using{
+    public static void main(String[] args) {
         try {
-            String user = "root";
-            String pass = "Kkkkk1312@";
-            String url = "jdbc:mysql://localhost:3306/swp?zeroDateTimeBehavior=CONVERT_TO_NULL";
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url, user, pass);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Connection con = new DBContext().getConnection();
+            System.out.println("Successfully!!!");
+        } catch (Exception e) {
+            System.out.println("Failed!!!" + e.getMessage());
         }
     }
     

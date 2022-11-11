@@ -33,8 +33,13 @@ public class RegisterDAO extends DBContext {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+<<<<<<< .merge_file_a11608
                 User user = new User(rs.getInt(1), rs.getNString(2), rs.getString(3), rs.getString(4), rs.getString(5),                        
                         rs.getString(6), rs.getNString(7), rs.getBoolean(8));
+=======
+                User user = new User(rs.getInt(1), rs.getNString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getBoolean(7), rs.getNString(8));
+>>>>>>> .merge_file_a17076
                 list.add(user);
             }
         } catch (Exception e) {
@@ -49,8 +54,13 @@ public class RegisterDAO extends DBContext {
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+<<<<<<< .merge_file_a11608
                 User user = new User(rs.getInt(1), rs.getNString(2), rs.getString(3), rs.getString(4), rs.getString(5),                        
                         rs.getString(6), rs.getNString(7), rs.getBoolean(8));
+=======
+                User user = new User(rs.getInt(1), rs.getNString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getBoolean(7), rs.getNString(8));
+>>>>>>> .merge_file_a17076
                 return user;
             }
         } catch (Exception e) {

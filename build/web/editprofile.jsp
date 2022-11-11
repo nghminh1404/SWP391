@@ -3,6 +3,10 @@
     Created on : Sep 25, 2022, 10:39:40 AM
     Author     : Hp
 --%>
+<<<<<<< .merge_file_a04628
+=======
+
+>>>>>>> .merge_file_a13372
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -115,7 +119,11 @@
                     </li>
                     <li class="nav-item dropdown has-arrow">
                         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+<<<<<<< .merge_file_a04628
                             <span class="user-img"><img class="rounded-circle" src="${sessionScope.user.avatar_url}" width="31" height="31" style="object-fit: cover;" alt="Ryan Taylor"></span>
+=======
+                            <span class="user-img"><img class="rounded-circle" src="${sessionScope.user.avatar_url}" width="31" alt="Ryan Taylor"></span>
+>>>>>>> .merge_file_a13372
                         </a>
                         <div class="dropdown-menu">
                             <div class="user-header">
@@ -311,6 +319,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-auto profile-image">
                                         <a href="#">
+<<<<<<< .merge_file_a04628
                                             <img class="rounded-circle" style="width: 200px; height: 122px; object-fit: cover;" alt="User Image" src="${sessionScope.user.avatar_url}"/>                                            
                                         </a>
                                     </div>
@@ -327,6 +336,20 @@
                                     </div>
                                 </div>
                             </div>       
+=======
+                                            <img class="rounded-circle" alt="User Image" src="${sessionScope.user.avatar_url}">
+                                        </a>
+                                    </div>
+                                    <div class="col ml-md-n2 profile-user-info">
+                                        <!--<h6 class="text-muted">Link avatar</h6>-->
+                                        <form action="changeavatar">
+                                            <input type="file" name="file">
+                                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                                        </form>
+                                    </div>                                    
+                                </div>
+                            </div>
+>>>>>>> .merge_file_a13372
                             <div class="profile-menu">
                                 <ul class="nav nav-tabs nav-tabs-solid">
                                     <li class="nav-item">
@@ -348,7 +371,11 @@
                                                     </h5>
                                                     <div class="row">
                                                         <div class="col-md-10 col-lg-6">
+<<<<<<< .merge_file_a04628
                                                             <form action="editprofile?action=editpersonalinfo" method="post">
+=======
+                                                            <form action="editpersonalinfo" method="post">
+>>>>>>> .merge_file_a13372
                                                                 <div class="form-group">
                                                                     <label>Name</label>
                                                                     <input type="text" class="form-control" name="name" value="${sessionScope.user.full_name}" required>
@@ -360,8 +387,12 @@
                                                                 <div class="form-group">
                                                                     <label>Mobile</label>
                                                                     <input type="number" class="mobile" value="${sessionScope.user.mobile}" name="mobile" required>
+<<<<<<< .merge_file_a04628
                                                                 </div>    
                                                                 <p style="color: red;">${requestScope.error}</p>
+=======
+                                                                </div>
+>>>>>>> .merge_file_a13372
                                                                 <button class="btn btn-primary" type="submit">Save Changes</button>
                                                             </form>
                                                         </div>
@@ -402,7 +433,10 @@
                     </div>
                 </div>
             </div>
+<<<<<<< .merge_file_a04628
             <%@include file="footer.jsp" %>
+=======
+>>>>>>> .merge_file_a13372
         </div>
         <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.6.0.min.js"></script>
         <script src="assets/js/popper.min.js"></script>

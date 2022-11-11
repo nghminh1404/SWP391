@@ -9,14 +9,17 @@ package Model;
  * @author kieut
  */
 public class Setting {
-    int setting_id;
-    int type_id;
-    String setting_title;
-    String setting_value;
-    int display_order;
-    boolean status;
-    String description;
-    public Setting(){}
+
+    private int setting_id;
+    private int type_id;
+    private String setting_title;
+    private String setting_value;
+    private int display_order;
+    private boolean status;
+    private String description;
+
+    public Setting() {
+    }
 
     public Setting(int setting_id, int type_id, String setting_title, String setting_value, int display_order, boolean status, String description) {
         this.setting_id = setting_id;
