@@ -10,14 +10,14 @@ package Model;
  */
 public class User {
 
-    int user_id;
-    String user_name;
-    String full_name;
-    String email;
-    String mobile;
-    String password;
-    String avatar_url;
-    Boolean status;
+    private int user_id;
+    private String user_name;
+    private String full_name;
+    private String email;
+    private String mobile;
+    private String password;
+    private String avatar_url;
+    private Boolean status;
 
     public User() {
     }

@@ -4,7 +4,6 @@
  */
 package dal;
 
-import Model.Setting;
 import Model.User;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -52,48 +51,6 @@ public class Dao extends DBContext {
         return null;
     }
 
-    public List<Setting> getSettinglist() {
-        List<Setting> list = new ArrayList<>();
-        String query = "SELECT * FROM swp.setting";
-        try {
-            con = new DBContext().connection;
-            ps = con.prepareStatement(query);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                list.add(new Setting(rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getInt(5),
-                        rs.getBoolean(6),
-                        rs.getString(7)));
-            }
-        } catch (Exception e) {
-        }
-        return list;
-    }
-
-    public Setting getSettingbyid(String id) {
-        String query = "SELECT * FROM swp.setting\n"
-                + "where setting_id=?";
-        try {
-            con = new DBContext().connection;
-            ps = con.prepareStatement(query);
-            ps.setString(1, id);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Setting(rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getInt(5),
-                        rs.getBoolean(6),
-                        rs.getString(7));
-            }
-        } catch (Exception e) {
-        }
-        return null;
-    }
 
     public User getUserbyID(int id) {
         String sql = "select * from user where user_id=?;";

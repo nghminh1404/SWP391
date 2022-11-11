@@ -5,10 +5,6 @@
         <servlet-class>Controller.LoginController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SettingController</servlet-name>
-        <servlet-class>Controller.SettingController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>Controller.ProfileController</servlet-class>
     </servlet>
@@ -20,18 +16,7 @@
         <servlet-name>DemoDashboardController</servlet-name>
         <servlet-class>Controller.DemoDashboardController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ChangePasswordController</servlet-name>
-        <servlet-class>Controller.ChangePasswordController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ChangeAvatar</servlet-name>
-        <servlet-class>Controller.AvatarController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>WebContactInfoController</servlet-name>
-        <servlet-class>Controller.WebContactInfoController</servlet-class>
-    </servlet>
+    
     <servlet>
         <servlet-name>MilestoneController</servlet-name>
         <servlet-class>Controller.MilestoneController</servlet-class>
@@ -56,58 +41,6 @@
         <servlet-name>TeamMemberController</servlet-name>
         <servlet-class>Controller.TeamMemberController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>RegisterController</servlet-name>
-        <servlet-class>Controller.RegisterController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>VerifyController</servlet-name>
-        <servlet-class>Controller.VerifyController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>WebContactController</servlet-name>
-        <servlet-class>Controller.WebContactController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>WebContactDetailController</servlet-name>
-        <servlet-class>Controller.WebContactDetailController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ChangePassword</servlet-name>
-        <servlet-class>Controller.ChangePassword</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SystemPermissionController</servlet-name>
-        <servlet-class>Controller.SystemPermissionController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>Controller.LoginController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RegisterController</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>VerifyController</servlet-name>
-        <url-pattern>/verify</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>WebContactController</servlet-name>
-        <url-pattern>/web_contact</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>WebContactDetailController</servlet-name>
-        <url-pattern>/web_contact_detail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangePassword</servlet-name>
-        <url-pattern>/changepassword</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SystemPermissionController</servlet-name>
-        <url-pattern>/systempermission</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -120,31 +53,11 @@
         <servlet-name>EditProfileController</servlet-name>
         <url-pattern>/editprofile</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginController</servlet-name>
-        <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SettingController</servlet-name>
-        <url-pattern>/setting</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
+     <servlet-mapping>
         <servlet-name>DemoDashboardController</servlet-name>
         <url-pattern>/demodashboard</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangePasswordController</servlet-name>
-        <url-pattern>/changepassword</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ChangeAvatar</servlet-name>
-        <url-pattern>/changeavatar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>WebContactInfoController</servlet-name>
-        <url-pattern>/web_contact_info</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
+  <servlet-mapping>
         <servlet-name>MilestoneController</servlet-name>
         <url-pattern>/milestone</url-pattern>
     </servlet-mapping>
@@ -168,7 +81,7 @@
         <servlet-name>TeamMemberController</servlet-name>
         <url-pattern>/teammember</url-pattern>
     </servlet-mapping>
-    <session-config>
+     <session-config>
         <session-timeout>
             30
         </session-timeout>

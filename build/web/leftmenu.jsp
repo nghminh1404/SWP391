@@ -6,16 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<style>
-    .submenu a:visited {
-        color: #18aefa;
-    }
-
-    .submenu a:link {
-        color: #6f6f6f;
-    }
-</style>
-
 <div class="header">
     <div class="header-left">
         <a href="demodashboard.html" class="logo">
@@ -136,10 +126,10 @@
                 <li class="menu-title">
                     <span>Main Menu</span>
                 </li>
-                <li class="submenu active">
+                <li class="submenu">
                     <a href="#"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="demodashboard.html" class="active">Admin Dashboard</a></li>
+                        <li><a href="demodashboard.html">Admin Dashboard</a></li>
                         <li><a href="teacher-dashboard.html">Teacher Dashboard</a></li>
                         <li><a href="student-dashboard.html">Student Dashboard</a></li>
                     </ul>
